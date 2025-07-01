@@ -3,7 +3,6 @@ name: Build and Push Angular Frontend
 on:
   push:
     branches: [
-      feature_4,
       dev_v1
     ]
 
