@@ -1,1 +1,7 @@
-<p>band-list works!</p>
+<h2>
+  <u>List of bands</u>
+</h2>
+<!-- Still requires modifications to the list to display other properties besides name. -->
+<ul>
+  <li *ngFor="let band of bands">{{ band.name }}</li>
+</ul>
