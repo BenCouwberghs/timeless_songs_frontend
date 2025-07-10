@@ -1,0 +1,7 @@
+<form (ngSubmit)="onSave()">
+  <label for="name">Name:</label>
+  <input type="text" id="name" name="name" [(ngModel)]="name"> <br><br>
+  <label for="linkwikipage">Link to Wikipedia page:</label>
+  <input type="text" id="linkwikipage" name="linkwikipage" [(ngModel)]="linkWikiPage"><br><br>
+  <input type="submit" value="Save">
+</form>
