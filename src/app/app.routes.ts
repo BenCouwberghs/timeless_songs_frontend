@@ -6,5 +6,5 @@ import {BandInformationComponent} from './band/component/band-information/band-i
 export const routes: Routes = [
 {path: 'band-list', component: BandListComponent},
 {path: 'band-form', component: NewBandFormComponent},
-{path: 'band-information', component: BandInformationComponent}
+{path: 'band-information/:id', component: BandInformationComponent}
   ];
