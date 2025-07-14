@@ -1,1 +1,6 @@
 <p>band-information works!</p>
+
+<div *ngIf="band">
+  <h2>{{ band?.name }}</h2>
+  <p>Wikipedia link:: {{ band?.linkWikiPage }}</p>
+</div>
