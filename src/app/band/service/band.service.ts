@@ -21,6 +21,11 @@ export class BandService {
       }
 
     fetchBands(): Observable<any> {
-      return this.http.get<any[]>(`${this.apiUrl}/bands`);
+        return this.http.get<any[]>(`${this.apiUrl}/bands`);
+      }
+
+    saveBand(name: string, linkWikiPage: string): Observable<string> {
+        const bandDto = { name, linkWikiPage };
+        return this.http.post<string>(`${this.apiUrl}/bands`, bandDto, {responseType: 'text' as 'json'});
       }
   }
