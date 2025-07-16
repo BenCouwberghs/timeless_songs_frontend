@@ -17,7 +17,10 @@ export class BandService {
       }
 
     fetchBand(id: number): Observable<string> {
-        return this.http.get<any>(`${this.apiUrl}/bands/${id}`)
+        return this.http.get<any>(`${this.apiUrl}/bands/${id}`);
       }
 
+    fetchBands(): Observable<any> {
+      return this.http.get<any[]>(`${this.apiUrl}/bands`);
+      }
   }
