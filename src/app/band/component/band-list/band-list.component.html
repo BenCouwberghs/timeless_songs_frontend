@@ -3,7 +3,9 @@
 </h2>
 <!-- Still requires modifications to the list to display other properties besides name. -->
 <ul>
-  <li *ngFor="let band of bands">{{ band.name }}</li>
+  <li *ngFor="let band of bands">
+    <a [routerLink]="['/band-information', band.id]" >{{ band.name }}</a>
+  </li>
 </ul>
 
 <a routerLink="/band-form">

@@ -1,22 +1,20 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { HttpClientModule, HttpClient } from '@angular/common/http';
-import { environment } from '../../../../environments/environment';
 import { RouterLink } from '@angular/router';
+import { BandService } from '../../service/band.service';
 
 @Component({
   selector: 'app-band-list',
-  imports: [CommonModule, HttpClientModule, RouterLink],
+  imports: [CommonModule, RouterLink],
   templateUrl: './band-list.component.html',
   styleUrl: './band-list.component.scss'
 })
 export class BandListComponent implements OnInit {
-    private apiUrl = environment.apiBaseUrl;
     bands: any[] = [];
 
-    constructor(private http: HttpClient) {}
+    constructor(private bandService: BandService) {}
 
     ngOnInit() {
-      this.http.get<any[]>(`${this.apiUrl}/bands`).subscribe(data => this.bands = data);
+      this.bandService.fetchBands().subscribe(data => this.bands = data);
      }
 }

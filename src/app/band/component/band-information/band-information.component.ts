@@ -1,0 +1,31 @@
+import { Component, OnInit } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { ActivatedRoute, Router } from '@angular/router';
+import {FormsModule} from "@angular/forms";
+import { BandService } from '../../service/band.service';
+
+@Component({
+  selector: 'app-band-information',
+  imports: [CommonModule, FormsModule],
+  templateUrl: './band-information.component.html',
+  styleUrl: './band-information.component.scss'
+})
+export class BandInformationComponent implements OnInit {
+    band: any;
+    showForm = false;
+
+  constructor(private route: ActivatedRoute, private router : Router, private bandService: BandService) {}
+
+  ngOnInit(): void {
+    const id = Number(this.route.snapshot.paramMap.get('id'));
+    this.bandService.fetchBand(id).subscribe(res => this.band = res);
+    }
+
+  onSave() {
+    this.bandService.modifyBand(this.band.name, this.band.linkWikiPage, this.band.id).subscribe({
+          next: () => this.router.navigate(['/band-list']),
+          error: err => console.error('Error:', err)
+          });
+    }
+
+}
