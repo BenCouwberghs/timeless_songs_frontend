@@ -28,4 +28,8 @@ export class BandService {
         const bandDto = { name, linkWikiPage };
         return this.http.post<string>(`${this.apiUrl}/bands`, bandDto, {responseType: 'text' as 'json'});
       }
+
+    deleteBand(id: number): Observable<string> {
+        return this.http.delete<string>(`${this.apiUrl}/bands/${id}`, {responseType: 'text' as 'json'});
+      }
   }
