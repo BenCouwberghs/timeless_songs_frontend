@@ -13,12 +13,13 @@ import { BandService } from '../../service/band.service';
 export class BandInformationComponent implements OnInit {
     band: any;
     showForm = false;
+    id: any;
 
   constructor(private route: ActivatedRoute, private router : Router, private bandService: BandService) {}
 
   ngOnInit(): void {
-    const id = Number(this.route.snapshot.paramMap.get('id'));
-    this.bandService.fetchBand(id).subscribe(res => this.band = res);
+    this.id = Number(this.route.snapshot.paramMap.get('id'));
+    this.bandService.fetchBand(this.id).subscribe(res => this.band = res);
     }
 
   onSave() {
@@ -27,5 +28,10 @@ export class BandInformationComponent implements OnInit {
           error: err => console.error('Error:', err)
           });
     }
-
+  onDelete() {
+    this.bandService.deleteBand(this.id).subscribe({
+        next: () => this.router.navigate(['/band-list']),
+        error: err => console.error('Error:', err)
+        });
+    }
 }
