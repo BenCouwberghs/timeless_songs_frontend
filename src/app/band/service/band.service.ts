@@ -32,4 +32,8 @@ export class BandService {
     deleteBand(id: number): Observable<string> {
         return this.http.delete<string>(`${this.apiUrl}/bands/${id}`, {responseType: 'text' as 'json'});
       }
+
+    search(keyword: string): Observable<any> {
+        return this.http.get<any[]>(`${this.apiUrl}/bands/search/${keyword}`)
+        }
   }
