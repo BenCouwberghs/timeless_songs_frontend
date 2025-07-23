@@ -25,7 +25,10 @@ export class NewBandFormComponent {
 
     this.bandService.saveBand(this.name, this.linkWikiPage).subscribe({
       next: () => this.router.navigate(['/band-list']),
-      error: err => console.error('Error:', err)
+      error: err => {
+        console.error('Error:', err);
+        alert('Error: ' + err);
+        }
       });
     }
 }
