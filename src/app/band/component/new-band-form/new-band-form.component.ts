@@ -18,6 +18,11 @@ export class NewBandFormComponent {
   constructor(private router: Router, private bandService: BandService ) {}
 
   onSave() {
+    if(this.name == '') {
+      alert('Band name cannot be empty.');
+      return;
+      }
+
     this.bandService.saveBand(this.name, this.linkWikiPage).subscribe({
       next: () => this.router.navigate(['/band-list']),
       error: err => console.error('Error:', err)
