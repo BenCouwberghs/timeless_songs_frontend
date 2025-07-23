@@ -1,21 +1,31 @@
 <p>band-information works!</p>
 
-<div *ngIf="!showForm">
-  <div *ngIf="band">
-    <h2>{{ band?.name }}</h2>
-    <p>Wikipedia link: {{ band?.linkWikiPage }}</p>
+@if (!showForm) {
+  <div>
+    @if (band) {
+      <div>
+        <h2>{{ band?.name }}</h2>
+        <p>Wikipedia link: {{ band?.linkWikiPage }}</p>
+      </div>
+    }
   </div>
-</div>
+}
 
-<div *ngIf="showForm">
-  <form (ngSubmit)="onSave()">
-    <label for="name">Name:</label>
-    <input type="text" id="name" name="name" [(ngModel)]="band.name"> <br><br>
-    <label for="linkwikipage">Link to Wikipedia page:</label>
-    <input type="text" id="linkwikipage" name="linkwikipage" [(ngModel)]="band.linkWikiPage"><br><br>
-    <input type="submit" value="Save">
-  </form>
-</div>
+@if (showForm) {
+  <div>
+    <form (ngSubmit)="onSave()">
+      <label for="name">Name:</label>
+      <input type="text" id="name" name="name" [(ngModel)]="band.name"> <br><br>
+      <label for="linkwikipage">Link to Wikipedia page:</label>
+      <input type="text" id="linkwikipage" name="linkwikipage" [(ngModel)]="band.linkWikiPage"><br><br>
+      <input type="submit" value="Save">
+    </form>
+  </div>
+}
 
-<button *ngIf="!showForm" (click)="showForm = !showForm">Edit</button>
-<button *ngIf="!showForm" (click)="onDelete()">Delete</button>
+@if (!showForm) {
+  <button (click)="showForm = !showForm">Edit</button>
+}
+@if (!showForm) {
+  <button (click)="onDelete()">Delete</button>
+}
