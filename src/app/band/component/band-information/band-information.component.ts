@@ -32,7 +32,7 @@ export class BandInformationComponent implements OnInit {
           next: () => this.router.navigate(['/band-list']),
           error: err => {
             console.error('Error:', err);
-            alert('Error: ' + err);
+            alert(err.message);
             }
           });
     }
