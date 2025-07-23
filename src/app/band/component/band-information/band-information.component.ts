@@ -23,11 +23,17 @@ export class BandInformationComponent implements OnInit {
     }
 
   onSave() {
+    if(this.band.name == '') {
+      alert('Band name cannot be empty.');
+      return;
+      }
+
     this.bandService.modifyBand(this.band.name, this.band.linkWikiPage, this.band.id).subscribe({
           next: () => this.router.navigate(['/band-list']),
           error: err => console.error('Error:', err)
           });
     }
+
   onDelete() {
     this.bandService.deleteBand(this.id).subscribe({
         next: () => this.router.navigate(['/band-list']),
