@@ -1,12 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-import { CommonModule } from '@angular/common';
+
 import { ActivatedRoute, Router } from '@angular/router';
 import {FormsModule} from "@angular/forms";
 import { BandService } from '../../service/band.service';
 
 @Component({
   selector: 'app-band-information',
-  imports: [CommonModule, FormsModule],
+  imports: [FormsModule],
   templateUrl: './band-information.component.html',
   styleUrl: './band-information.component.scss'
 })

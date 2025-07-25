@@ -5,15 +5,21 @@
 <form (ngSubmit)="onSearch()">
   <label for="search">Search By:</label>
   <input type="text" id="search" name="search" [(ngModel)]="keyword"> <br><br>
-  <input *ngIf="!showClearButton" type="submit" value="Search" (click)="showClearButton = !showClearButton">
+  @if (!showClearButton) {
+    <input type="submit" value="Search" (click)="showClearButton = !showClearButton">
+  }
 </form>
 
-<button *ngIf="showClearButton" (click)="clear()">Clear search</button>
+@if (showClearButton) {
+  <button (click)="clear()">Clear search</button>
+}
 
 <ul>
-  <li *ngFor="let band of bands">
-    <a [routerLink]="['/band-information', band.id]" >{{ band.name }}</a>
-  </li>
+  @for (band of bands; track band) {
+    <li>
+      <a [routerLink]="['/band-information', band.id]" >{{ band.name }}</a>
+    </li>
+  }
 </ul>
 
 <a routerLink="/band-form">

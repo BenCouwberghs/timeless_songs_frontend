@@ -1,0 +1,11 @@
+@import "tailwindcss";
+@import "tailwindcss-primeui";
+/*@custom-variant dark (&:where(.p-dark, .p-dark *));*/
+
+.btn-primary {
+  @apply bg-blue-600 text-white font-semibold py-2 px-4 rounded hover:bg-blue-700;
+}
+
+.btn-cancel {
+  @apply bg-gray-300 text-gray-800 font-semibold py-2 px-4 rounded hover:bg-gray-400;
+}
