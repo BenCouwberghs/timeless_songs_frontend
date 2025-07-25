@@ -10,12 +10,14 @@ import { routes } from './app.routes';
 export const appConfig: ApplicationConfig = {
   providers: [
     provideZoneChangeDetection({ eventCoalescing: true }),
-    provideRouter(routes), provideHttpClient(),
+    provideRouter(routes),
+    provideHttpClient(),
     provideAnimationsAsync(),
-            providePrimeNG({
-                theme: {
-                    preset: Aura
-                }
-            })
+    providePrimeNG({
+        theme: {
+            preset: Aura,
+            options: { darkModeSelector: '.p-dark' },
+        }
+    })
   ]
 };
