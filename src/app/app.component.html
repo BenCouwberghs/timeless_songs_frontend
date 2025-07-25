@@ -1,15 +1,13 @@
-<h1>Start of the timeless frontend application</h1>
-<h2>As part of a first test, we will show a list of bands know at the backend</h2>
-<h2>
-  <u>Bands</u>
-</h2>
-
-<a routerLink="/band-list">
-  <p-button label="List bands" />
-</a>
-
-<a routerLink="/band-form">
-  <p-button label="Add band" />
-</a>
-
-<router-outlet></router-outlet>
+<div
+  class="bg-surface-50 dark:bg-surface-950 min-h-screen p-8 flex flex-col gap-6"
+>
+  <nav class="bg-white dark:bg-gray-800 p-4 shadow flex justify-between">
+    <span class="font-bold text-xl text-gray-600 dark:text-white">Timeless songs</span>
+    <ul class="flex gap-4">
+      <li><a routerLink="/band-list" class="text-blue-500 hover:underline">Bands</a></li>
+      <li><a routerLink="/song-list" class="text-blue-500 hover:underline">Songs</a></li>
+      <li><a routerLink="/credits" class="text-blue-500 hover:underline">Credits</a></li>
+    </ul>
+  </nav>
+  <router-outlet></router-outlet>
+</div>
