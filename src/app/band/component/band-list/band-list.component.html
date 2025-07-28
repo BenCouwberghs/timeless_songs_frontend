@@ -1,27 +1,33 @@
-<h2>
-  <u>List of bands</u>
-</h2>
+<p-toolbar>
+  <ng-template #start>
+    <h2 class="text-2xl text-gray-800">Overview Bands</h2>
+  </ng-template>
+  <ng-template #center>
+    <div class="flex space-x-1 pt-2">
+      <input pInputText placeholder="Search band" [(ngModel)]="keyword" (keydown.enter)="onSearch()"/>
+      <p-button icon="pi pi-search" (click)="onSearch()"></p-button>
+      @if (keyword) {
+        <p-button icon="pi pi-times" (click)="clear()"></p-button>
+      }
+    </div>
+  </ng-template>
+  <ng-template #end>
+    <button type="button" pButton [routerLink]="'/band-form'">
+      Add band
+    </button>
+  </ng-template>
+</p-toolbar>
 
-<form (ngSubmit)="onSearch()">
-  <label for="search">Search By:</label>
-  <input type="text" id="search" name="search" [(ngModel)]="keyword"> <br><br>
-  @if (!showClearButton) {
-    <input type="submit" value="Search" (click)="showClearButton = !showClearButton">
-  }
-</form>
-
-@if (showClearButton) {
-  <button (click)="clear()">Clear search</button>
-}
-
-<ul>
+<ul class="divide-y divide-gray-200">
   @for (band of bands; track band) {
-    <li>
-      <a [routerLink]="['/band-information', band.id]" >{{ band.name }}</a>
-    </li>
+  <li>
+    <a
+      [routerLink]="['/band-information', band.id]"
+      class="flex p-4 hover:bg-gray-100 text-blue-600"
+    >
+      {{ band.name }}
+    </a>
+  </li>
   }
 </ul>
 
-<a routerLink="/band-form">
-  <button type="button">Add band</button>
-</a>
