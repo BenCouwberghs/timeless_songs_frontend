@@ -4,16 +4,19 @@ import { RouterLink } from '@angular/router';
 import {FormsModule} from "@angular/forms";
 import { BandService } from '../../service/band.service';
 
+import { InputTextModule } from 'primeng/inputtext';
+import { ToolbarModule } from 'primeng/toolbar';
+import { ButtonModule } from 'primeng/button';
+
 @Component({
   selector: 'app-band-list',
-  imports: [RouterLink, FormsModule],
+  imports: [RouterLink, FormsModule, InputTextModule, ButtonModule, ToolbarModule],
   templateUrl: './band-list.component.html',
   styleUrl: './band-list.component.scss'
 })
 export class BandListComponent implements OnInit {
     bands: any[] = [];
     keyword: string = '';
-    showClearButton = false;
 
     constructor(private bandService: BandService) {}
 
@@ -27,7 +30,6 @@ export class BandListComponent implements OnInit {
 
    clear() {
      this.keyword = '';
-     this.showClearButton = false;
      this.ngOnInit();
      }
 }
