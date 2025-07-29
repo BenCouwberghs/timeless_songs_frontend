@@ -1,0 +1,17 @@
+<div class="relative min-h-screen flex items-center justify-center px-6 py-12 bg-black">
+  <img src="/hero_image.jpg"
+       alt="Music Illustration"
+       class="absolute inset-0 w-full h-full object-cover opacity-40" />
+  <div class="relative z-10 text-center text-white max-w-3xl">
+    <h1 class="text-3xl sm:text-4xl md:text-5xl font-bold mb-6">🎸 Discover Bands & Their Songs</h1>
+    <p class="text-lg mb-8">
+      Dive into a world of music. Explore detailed profiles of your favorite bands, track their discography, and uncover hidden gems.
+    </p>
+    <div class="flex flex-col sm:flex-row gap-4 justify-center items-center">
+      <button type="button" pButton [routerLink]="'/band-list'" class="p-button p-button-lg w-auto">
+        Discover bands
+      </button>
+    </div>
+  </div>
+</div>
+
