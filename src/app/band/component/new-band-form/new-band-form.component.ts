@@ -39,7 +39,8 @@ export class NewBandFormComponent {
         },
       error: err => {
         console.error('Error:', err);
-        alert(err.message);
+        this.messageService.add({ severity: 'error', summary: 'error', detail: `Error: ${err.message}`,
+                  life: 3000});
         }
       });
     }
