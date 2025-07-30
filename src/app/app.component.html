@@ -2,7 +2,9 @@
   class="bg-surface-50 dark:bg-surface-950 min-h-screen p-8 flex flex-col gap-6"
 >
   <nav class="bg-white dark:bg-gray-800 p-4 shadow flex justify-between">
-    <span class="font-bold text-xl text-gray-600 dark:text-white">Timeless songs</span>
+    <a [routerLink]="'/hero'" class="font-bold text-xl text-gray-600 dark:text-white">
+      Timeless songs
+    </a>
     <ul class="flex gap-4">
       <li><a routerLink="/band-list" class="text-blue-500 hover:underline">Bands</a></li>
       <li><a routerLink="/song-list" class="text-blue-500 hover:underline">Songs</a></li>
