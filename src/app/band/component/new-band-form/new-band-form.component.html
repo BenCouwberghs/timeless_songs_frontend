@@ -1,4 +1,7 @@
 <p-fluid class="p-4">
+
+  <p-toast></p-toast>
+
   <form (ngSubmit)="onSave()" class="flex flex-col gap-4">
     <div class="text-center">
       <h2 class="text-2xl font-bold text-gray-800">New Band Information</h2>
@@ -16,9 +19,7 @@
       <button type="button" pButton class="btn-cancel" (click)="onCancel()">
         Cancel
       </button>
-      <button type="submit" pButton class="btn-primary" >
-        Save
-      </button>
+      <p-button type="submit" pButton class="btn-primary" label="Save"></p-button>
     </div>
   </form>
 </p-fluid>
