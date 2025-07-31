@@ -16,10 +16,8 @@
       <input pInputText id="linkwikipage" name="linkWikiPage" [(ngModel)]="linkWikiPage" />
     </div>
     <div class="flex justify-end space-x-3 pt-4">
-      <button type="button" pButton class="btn-cancel" (click)="onCancel()">
-        Cancel
-      </button>
-      <p-button type="submit" pButton class="btn-primary" label="Save"></p-button>
+      <p-button type="button" styleClass="p-button-secondary" (click)="onCancel()" label="Cancel"></p-button>
+      <p-button type="submit" styleClass="p-button-primary" label="Save"></p-button>
     </div>
   </form>
 </p-fluid>
