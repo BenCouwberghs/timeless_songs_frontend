@@ -1,11 +1,12 @@
 import { Component } from '@angular/core';
+import { DividerModule } from 'primeng/divider';
+
 
 @Component({
   selector: 'app-credits',
-  imports: [],
+  standalone: true,
+  imports: [DividerModule],
   templateUrl: './credits.component.html',
-  styleUrl: './credits.component.scss'
 })
 export class CreditsComponent {
-
 }
