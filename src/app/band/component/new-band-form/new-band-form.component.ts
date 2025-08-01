@@ -25,7 +25,7 @@ export class NewBandFormComponent {
 
   onSave() {
     if(this.name == '') {
-      alert('Band name cannot be empty.');
+      this.messageService.add({ severity: 'error', summary: 'error', detail: 'Band name cannot be empty.', life: 3000});
       return;
       }
 
