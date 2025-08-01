@@ -1,12 +1,14 @@
 import { Component, OnInit } from '@angular/core';
-
 import { ActivatedRoute, Router } from '@angular/router';
-import {FormsModule} from "@angular/forms";
+import { FormsModule } from "@angular/forms";
 import { BandService } from '../../service/band.service';
+import { InputTextModule } from 'primeng/inputtext';
+import { FluidModule } from 'primeng/fluid';
+import { ButtonModule } from 'primeng/button';
 
 @Component({
   selector: 'app-band-information',
-  imports: [FormsModule],
+  imports: [FormsModule, InputTextModule, FluidModule, ButtonModule],
   templateUrl: './band-information.component.html',
   styleUrl: './band-information.component.scss'
 })
