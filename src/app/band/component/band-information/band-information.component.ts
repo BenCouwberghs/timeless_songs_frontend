@@ -5,13 +5,14 @@ import { BandService } from '../../service/band.service';
 import { InputTextModule } from 'primeng/inputtext';
 import { FluidModule } from 'primeng/fluid';
 import { ButtonModule } from 'primeng/button';
-import { MessageService } from 'primeng/api';
+import { MessageService, ConfirmationService } from 'primeng/api';
 import { ToastModule } from 'primeng/toast';
+import { ConfirmDialogModule } from 'primeng/confirmdialog';
 
 @Component({
   selector: 'app-band-information',
-  imports: [FormsModule, InputTextModule, FluidModule, ButtonModule, ToastModule],
-  providers: [MessageService],
+  imports: [FormsModule, InputTextModule, FluidModule, ButtonModule, ToastModule, ConfirmDialogModule],
+  providers: [MessageService, ConfirmationService],
   templateUrl: './band-information.component.html',
   styleUrl: './band-information.component.scss'
 })
@@ -21,7 +22,7 @@ export class BandInformationComponent implements OnInit {
     id: any;
 
   constructor(private route: ActivatedRoute, private router : Router, private bandService: BandService,
-    private messageService: MessageService) {}
+    private messageService: MessageService, private confirmationService: ConfirmationService) {}
 
   ngOnInit(): void {
     this.id = Number(this.route.snapshot.paramMap.get('id'));
@@ -46,7 +47,7 @@ export class BandInformationComponent implements OnInit {
 
   onDelete() {
     this.bandService.deleteBand(this.id).subscribe({
-        next: () => this.router.navigate(['/band-list']),
+        next: () => { setTimeout(() => { this.router.navigate(['/band-list']); }, 3000); },
         error: err => {
           console.error('Error:', err);
           this.sendErrorMessage(err);
@@ -56,5 +57,34 @@ export class BandInformationComponent implements OnInit {
 
   sendErrorMessage(err: any) {
     this.messageService.add({ severity: 'error', summary: 'error', detail: `Error: ${err.message}`, life: 3000});
+    }
+
+  deleteEvent(event: Event) {
+    this.confirmationService.confirm({
+      target: event.target as EventTarget,
+      message: `Do you want to delete the band ${this.band.name}?`,
+      header: 'Confirm delete action',
+      icon: 'pi pi-info-circle',
+      rejectLabel: 'Cancel',
+      rejectButtonProps: {
+          label: 'Cancel',
+          severity: 'secondary',
+          outlined: true,
+      },
+      acceptButtonProps: {
+          label: 'Delete',
+          severity: 'danger',
+      },
+
+      accept: () => {
+          this.messageService.add({ severity: 'info', summary: 'Confirmed',
+            detail: `You have deleted the band ${this.band.name}`, life: 3000 });
+            this.onDelete();
+      },
+      reject: () => {
+          this.messageService.add({ severity: 'error', summary: 'Rejected', detail: 'You have rejected' });
+      },
+
+      })
     }
 }
