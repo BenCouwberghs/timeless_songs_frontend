@@ -1,6 +1,7 @@
 <p-fluid class="p-4">
 
   <p-toast></p-toast>
+  <p-confirmdialog></p-confirmdialog>
 
   @if (!showForm) {
   <div class="text-center">
@@ -46,7 +47,7 @@
   <div class="flex justify-end space-x-3 pt-4">
   @if (!showForm) {
     <p-button type="button" (click)="showForm = !showForm" styleClass="p-button-primary" label="Edit"></p-button>
-    <p-button type="button" (click)="onDelete()" styleClass="p-button-danger" label="Delete"></p-button>
+    <p-button type="button" (click)="deleteEvent($event)" styleClass="p-button-danger" label="Delete"></p-button>
   }
   </div>
 </p-fluid>
