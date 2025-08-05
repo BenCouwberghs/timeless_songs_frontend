@@ -1,12 +1,17 @@
 import { Component, OnInit } from '@angular/core';
-
 import { ActivatedRoute, Router } from '@angular/router';
-import {FormsModule} from "@angular/forms";
+import { FormsModule } from "@angular/forms";
 import { BandService } from '../../service/band.service';
+import { InputTextModule } from 'primeng/inputtext';
+import { FluidModule } from 'primeng/fluid';
+import { ButtonModule } from 'primeng/button';
+import { MessageService } from 'primeng/api';
+import { ToastModule } from 'primeng/toast';
 
 @Component({
   selector: 'app-band-information',
-  imports: [FormsModule],
+  imports: [FormsModule, InputTextModule, FluidModule, ButtonModule, ToastModule],
+  providers: [MessageService],
   templateUrl: './band-information.component.html',
   styleUrl: './band-information.component.scss'
 })
@@ -15,7 +20,8 @@ export class BandInformationComponent implements OnInit {
     showForm = false;
     id: any;
 
-  constructor(private route: ActivatedRoute, private router : Router, private bandService: BandService) {}
+  constructor(private route: ActivatedRoute, private router : Router, private bandService: BandService,
+    private messageService: MessageService) {}
 
   ngOnInit(): void {
     this.id = Number(this.route.snapshot.paramMap.get('id'));
@@ -24,15 +30,16 @@ export class BandInformationComponent implements OnInit {
 
   onSave() {
     if(this.band.name == '') {
-      alert('Band name cannot be empty.');
+      this.messageService.add({ severity: 'error', summary: 'error', detail: 'Band name cannot be empty.', life: 3000});
+
       return;
-      }
+    }
 
     this.bandService.modifyBand(this.band.name, this.band.linkWikiPage, this.band.id).subscribe({
           next: () => this.router.navigate(['/band-list']),
           error: err => {
             console.error('Error:', err);
-            alert(err.message);
+            this.sendErrorMessage(err);
             }
           });
     }
@@ -40,7 +47,14 @@ export class BandInformationComponent implements OnInit {
   onDelete() {
     this.bandService.deleteBand(this.id).subscribe({
         next: () => this.router.navigate(['/band-list']),
-        error: err => console.error('Error:', err)
+        error: err => {
+          console.error('Error:', err);
+          this.sendErrorMessage(err);
+          }
         });
+    }
+
+  sendErrorMessage(err: any) {
+    this.messageService.add({ severity: 'error', summary: 'error', detail: `Error: ${err.message}`, life: 3000});
     }
 }
