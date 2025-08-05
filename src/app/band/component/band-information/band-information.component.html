@@ -38,6 +38,7 @@
         <input pInputText id="linkwikipage" name="linkWikiPage" [(ngModel)]="band.linkWikiPage" />
       </div>
       <div class="flex justify-end space-x-3 pt-4">
+        <p-button type="button" (click)="showForm = !showForm" styleClass="p-button-secondary" label="Cancel"></p-button>
         <p-button type="submit" styleClass="p-button-primary" label="Save"></p-button>
       </div>
     </form>
