@@ -39,8 +39,7 @@ export class BandInformationComponent implements OnInit {
           next: () => this.router.navigate(['/band-list']),
           error: err => {
             console.error('Error:', err);
-            this.messageService.add({ severity: 'error', summary: 'error', detail: `Error: ${err.message}`,
-              life: 3000});
+            this.sendErrorMessage(err);
             }
           });
     }
@@ -50,9 +49,12 @@ export class BandInformationComponent implements OnInit {
         next: () => this.router.navigate(['/band-list']),
         error: err => {
           console.error('Error:', err);
-          this.messageService.add({ severity: 'error', summary: 'error', detail: `Error: ${err.message}`,
-          life: 3000});
+          this.sendErrorMessage(err);
           }
         });
+    }
+
+  sendErrorMessage(err: any) {
+    this.messageService.add({ severity: 'error', summary: 'error', detail: `Error: ${err.message}`, life: 3000});
     }
 }
