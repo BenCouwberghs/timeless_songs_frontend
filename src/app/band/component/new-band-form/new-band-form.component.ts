@@ -25,18 +25,18 @@ export class NewBandFormComponent {
 
   onSave() {
     if(this.name == '') {
-      this.notificationService.sendError('Band name cannot be empty.');
+      this.notificationService.sendError('Error', 'Band name cannot be empty.');
       return;
       }
 
     this.bandService.saveBand(this.name, this.linkWikiPage).subscribe({
       next: () => {
-        this.notificationService.sendSuccess(`Band ${this.name} has been added`);
+        this.notificationService.sendSuccess('Success', `Band ${this.name} has been added`);
         this.router.navigate(['/band-list']);
         },
       error: err => {
         console.error('Error:', err);
-        this.notificationService.sendError(`Error: ${err.message}`);
+        this.notificationService.sendError('Error', `Error: ${err.message}`);
         }
       });
     }
