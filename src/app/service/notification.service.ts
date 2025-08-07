@@ -7,11 +7,15 @@ import { MessageService } from 'primeng/api';
 export class NotificationService {
 
   constructor(private messageService: MessageService) {}
-    sendError(message: string) {
-      this.messageService.add({ severity: 'error', summary: 'error', detail: `${message}`, life: 3000});
+    sendError(summary: string, message: string) {
+      this.messageService.add({ severity: 'error', summary: `${summary}`, detail: `${message}`, life: 3000});
       }
 
-    sendSuccess(message: string) {
-      this.messageService.add({ severity: 'success', summary: 'success', detail: `${message}`, life: 3000});
+    sendSuccess(summary: string, message: string) {
+      this.messageService.add({ severity: 'success', summary: `${summary}`, detail: `${message}`, life: 3000});
+      }
+
+    sendInfo(summary: string, message: string) {
+      this.messageService.add({ severity: 'info', summary: `${summary}`, detail: `${message}`, life: 3000});
       }
   }
