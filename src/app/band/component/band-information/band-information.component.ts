@@ -8,6 +8,7 @@ import { ButtonModule } from 'primeng/button';
 import { MessageService, ConfirmationService } from 'primeng/api';
 import { ToastModule } from 'primeng/toast';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
+import { NotificationService } from '../../../service/notification.service'
 
 @Component({
   selector: 'app-band-information',
@@ -22,7 +23,7 @@ export class BandInformationComponent implements OnInit {
     id: any;
 
   constructor(private route: ActivatedRoute, private router : Router, private bandService: BandService,
-    private messageService: MessageService, private confirmationService: ConfirmationService) {}
+    private confirmationService: ConfirmationService, private notificationService: NotificationService) {}
 
   ngOnInit(): void {
     this.id = Number(this.route.snapshot.paramMap.get('id'));
@@ -31,7 +32,7 @@ export class BandInformationComponent implements OnInit {
 
   onSave() {
     if(this.band.name == '') {
-      this.messageService.add({ severity: 'error', summary: 'error', detail: 'Band name cannot be empty.', life: 3000});
+      this.notificationService.sendError('Error', 'Band name cannot be empty.');
 
       return;
     }
@@ -40,23 +41,19 @@ export class BandInformationComponent implements OnInit {
           next: () => this.router.navigate(['/band-list']),
           error: err => {
             console.error('Error:', err);
-            this.sendErrorMessage(err);
+            this.notificationService.sendError('Error', err.message);
             }
           });
     }
 
   onDelete() {
     this.bandService.deleteBand(this.id).subscribe({
-        next: () => { setTimeout(() => { this.router.navigate(['/band-list']); }, 3000); },
+        next: () => { this.router.navigate(['/band-list']); },
         error: err => {
           console.error('Error:', err);
-          this.sendErrorMessage(err);
+          this.notificationService.sendError('Error', err.message);
           }
         });
-    }
-
-  sendErrorMessage(err: any) {
-    this.messageService.add({ severity: 'error', summary: 'error', detail: `Error: ${err.message}`, life: 3000});
     }
 
   deleteEvent(event: Event) {
@@ -77,12 +74,11 @@ export class BandInformationComponent implements OnInit {
       },
 
       accept: () => {
-          this.messageService.add({ severity: 'info', summary: 'Confirmed',
-            detail: `You have deleted the band ${this.band.name}`, life: 3000 });
+        this.notificationService.sendInfo('Confirmed', `You have deleted the band ${this.band.name}`);
             this.onDelete();
       },
       reject: () => {
-          this.messageService.add({ severity: 'error', summary: 'Rejected', detail: 'You have rejected' });
+        this.notificationService.sendError('Rejected', 'You have rejected');
       },
 
       })
