@@ -11,6 +11,7 @@ export const routes: Routes = [
 {path: 'hero', component: HeroComponent},
 {path: 'band-list', component: BandListComponent},
 {path: 'band-form', component: NewBandFormComponent},
+{path: 'band-form/:id', component: NewBandFormComponent},
 {path: 'band-information/:id', component: BandInformationComponent},
 {path: 'credits', component: CreditsComponent},
 {path: 'song-list', component: SongListComponent}
