@@ -21,7 +21,7 @@ export class NewBandFormComponent {
   name: string = '';
   linkWikiPage: string  = '';
   band: any;
-  showForm = false;
+  update = false;
   id: any;
 
   constructor(private route: ActivatedRoute, private router: Router, private bandService: BandService, private notificationService: NotificationService ) {}
@@ -30,13 +30,14 @@ export class NewBandFormComponent {
 // Otherwise we know we need to show the add band side
 
   ngOnInit(): void {
-    this.id = Number(this.route.snapshot.paramMap.get('id'));
+    this.id = this.route.snapshot.paramMap.get('id');
 
     if(this.id == null) {
       // Execute add side
       // Place code to show the appropriate form and buttons
       } else {
         // Execute update side
+        this.update = true;
         this.bandService.fetchBand(this.id).subscribe(res => {
           this.band = res;
           this.name = this.band.name;
