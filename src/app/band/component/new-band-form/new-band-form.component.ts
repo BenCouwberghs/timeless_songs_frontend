@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { FormsModule } from "@angular/forms";
 import { BandService } from '../../service/band.service';
 import { InputTextModule } from 'primeng/inputtext';
@@ -20,8 +20,31 @@ import { NotificationService } from '../../../service/notification.service'
 export class NewBandFormComponent {
   name: string = '';
   linkWikiPage: string  = '';
+  band: any;
+  showForm = false;
+  id: any;
 
-  constructor(private router: Router, private bandService: BandService, private notificationService: NotificationService ) {}
+  constructor(private route: ActivatedRoute, private router: Router, private bandService: BandService, private notificationService: NotificationService ) {}
+
+// Have init check if we get an id variable passed, if so execute code to show the update side
+// Otherwise we know we need to show the add band side
+
+  ngOnInit(): void {
+    this.id = Number(this.route.snapshot.paramMap.get('id'));
+
+    if(this.id == null) {
+      // Execute add side
+      // Place code to show the appropriate form and buttons
+      } else {
+        // Execute update side
+        this.bandService.fetchBand(this.id).subscribe(res => {
+          this.band = res;
+          this.name = this.band.name;
+          this.linkWikiPage = this.band.linkWikiPage;
+          });
+        }
+        // Place code to show the appropriate form and buttons
+    }
 
   onSave() {
     if(this.name == '') {
