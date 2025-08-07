@@ -48,7 +48,10 @@ export class BandInformationComponent implements OnInit {
 
   onDelete() {
     this.bandService.deleteBand(this.id).subscribe({
-        next: () => { this.router.navigate(['/band-list']); },
+        next: () => {
+            this.notificationService.sendInfo('Confirmed', `You have deleted the band ${this.band.name}`);
+            this.router.navigate(['/band-list']);
+            },
         error: err => {
           console.error('Error:', err);
           this.notificationService.sendError('Error', err.message);
@@ -74,8 +77,7 @@ export class BandInformationComponent implements OnInit {
       },
 
       accept: () => {
-        this.notificationService.sendInfo('Confirmed', `You have deleted the band ${this.band.name}`);
-            this.onDelete();
+        this.onDelete();
       },
       reject: () => {
         this.notificationService.sendError('Rejected', 'You have rejected');
