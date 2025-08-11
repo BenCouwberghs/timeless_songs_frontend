@@ -65,7 +65,7 @@ export class NewBandFormComponent {
         }
       });
     } else {
-      this.bandService.modifyBand(this.band.name, this.band.linkWikiPage, this.band.id).subscribe({
+      this.bandService.modifyBand(this.name, this.linkWikiPage, this.id).subscribe({
         next: () => this.router.navigate(['/band-list']),
         error: err => {
           console.error('Error:', err);
