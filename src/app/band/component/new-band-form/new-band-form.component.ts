@@ -53,6 +53,7 @@ export class NewBandFormComponent {
       return;
       }
 
+    if(this.update == false) {
     this.bandService.saveBand(this.name, this.linkWikiPage).subscribe({
       next: () => {
         this.notificationService.sendSuccess('Success', `Band ${this.name} has been added`);
@@ -63,7 +64,16 @@ export class NewBandFormComponent {
         this.notificationService.sendError('Error', `Error: ${err.message}`);
         }
       });
-    }
+    } else {
+      this.bandService.modifyBand(this.band.name, this.band.linkWikiPage, this.band.id).subscribe({
+        next: () => this.router.navigate(['/band-list']),
+        error: err => {
+          console.error('Error:', err);
+          this.notificationService.sendError('Error', err.message);
+          }
+        });
+      }
+  }
 
   onCancel() {
     this.router.navigate(['/band-list']);
