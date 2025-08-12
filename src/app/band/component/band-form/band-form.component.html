@@ -12,7 +12,7 @@
     </div>
     }
 
-    @if(!update) {
+    @else {
     <div class="text-center">
       <h2 class="text-2xl font-bold text-gray-800">Band form</h2>
       <p class="text-sm text-gray-500 mt-1">Fill in the details below and click Add.</p>
@@ -36,7 +36,7 @@
     </div>
     }
 
-    @if (!update) {
+    @else {
     <div class="flex justify-end space-x-3 pt-4">
       <p-button type="button" styleClass="p-button-secondary" (click)="onCancel()" label="Cancel"></p-button>
       <p-button type="submit" styleClass="p-button-primary" label="Add"></p-button>
