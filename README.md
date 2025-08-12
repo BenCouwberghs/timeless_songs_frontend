@@ -1,4 +1,4 @@
-# Timeless Songs - Frontend
+# Timeless Songs - Front end
 ## Description
 Welcome to our project. This is a web app on which you can look up bands, see the songs they've made
 and more. 
