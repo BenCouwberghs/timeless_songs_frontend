@@ -1,7 +1,6 @@
 import { Routes } from '@angular/router';
 import {BandListComponent} from './band/component/band-list/band-list.component';
 import {BandFormComponent} from './band/component/band-form/band-form.component';
-import {BandInformationComponent} from './band/component/band-information/band-information.component';
 import {HeroComponent} from './pages/hero/hero.component';
 import {CreditsComponent} from './pages/credits/credits.component';
 import { SongListComponent } from './song/component/song-list/song-list.component';
@@ -12,7 +11,6 @@ export const routes: Routes = [
 {path: 'band-list', component: BandListComponent},
 {path: 'band-form', component: BandFormComponent},
 {path: 'band-form/:id', component: BandFormComponent},
-{path: 'band-information/:id', component: BandInformationComponent},
 {path: 'credits', component: CreditsComponent},
 {path: 'song-list', component: SongListComponent}
   ];
