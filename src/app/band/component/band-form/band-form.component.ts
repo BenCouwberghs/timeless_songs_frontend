@@ -11,15 +11,15 @@ import { ConfirmationService } from 'primeng/api';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
 
 @Component({
-  selector: 'app-new-band-form',
+  selector: 'app-band-form',
   imports: [
   FormsModule, InputTextModule, FluidModule, ToastModule, ButtonModule, ConfirmDialogModule
     ],
   providers: [ConfirmationService],
-  templateUrl: './new-band-form.component.html',
-  styleUrl: './new-band-form.component.scss'
+  templateUrl: './band-form.component.html',
+  styleUrl: './band-form.component.scss'
 })
-export class NewBandFormComponent {
+export class BandFormComponent {
   name: string = '';
   linkWikiPage: string  = '';
   band: any;
