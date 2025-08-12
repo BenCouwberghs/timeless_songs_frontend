@@ -29,14 +29,10 @@ export class NewBandFormComponent {
   constructor(private route: ActivatedRoute, private router: Router, private bandService: BandService,
     private notificationService: NotificationService, private confirmationService: ConfirmationService) {}
 
-// Have init check if we get an id variable passed, if so execute code to show the update side
-// Otherwise we know we need to show the add band side
-
   ngOnInit(): void {
     this.id = this.route.snapshot.paramMap.get('id');
 
     if(this.id != null) {
-      // Execute update side
        this.update = true;
        this.bandService.fetchBand(this.id).subscribe(res => {
          this.band = res;
