@@ -52,7 +52,7 @@ export class BandFormComponent {
     this.bandService.saveBand(this.name, this.linkWikiPage).subscribe({
       next: () => {
         this.notificationService.sendSuccess('Success', `Band ${this.name} has been added`);
-        this.router.navigate(['/band-list']);
+        this.gotoBandList();
         },
       error: err => {
         console.error('Error:', err);
@@ -61,7 +61,7 @@ export class BandFormComponent {
       });
     } else {
       this.bandService.modifyBand(this.name, this.linkWikiPage, this.id).subscribe({
-        next: () => this.router.navigate(['/band-list']),
+        next: () => this.gotoBandList(),
         error: err => {
           console.error('Error:', err);
           this.notificationService.sendError('Error', err.message);
@@ -71,14 +71,14 @@ export class BandFormComponent {
   }
 
   onCancel() {
-    this.router.navigate(['/band-list']);
+    this.gotoBandList();
   }
 
   onDelete() {
     this.bandService.deleteBand(this.id).subscribe({
         next: () => {
             this.notificationService.sendInfo('Confirmed', `You have deleted the band ${this.band.name}`);
-            this.router.navigate(['/band-list']);
+            this.gotoBandList();
             },
         error: err => {
           console.error('Error:', err);
@@ -112,5 +112,9 @@ export class BandFormComponent {
       },
 
       })
-    }
+  }
+
+  gotoBandList() {
+    this.router.navigate(['/band-list']);
+  }
 }
