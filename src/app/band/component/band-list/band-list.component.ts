@@ -9,25 +9,34 @@ import { ToolbarModule } from 'primeng/toolbar';
 import { ButtonModule } from 'primeng/button';
 import { TooltipModule } from 'primeng/tooltip';
 
+import { InputGroupModule } from 'primeng/inputgroup';
+import { InputGroupAddonModule } from 'primeng/inputgroupaddon';
+
 @Component({
   selector: 'app-band-list',
-  imports: [RouterLink, FormsModule, InputTextModule, ButtonModule, ToolbarModule,
-    TooltipModule],
+  imports: [RouterLink, FormsModule, InputTextModule, ButtonModule, ToolbarModule, InputGroupModule,
+    InputGroupAddonModule, TooltipModule],
   templateUrl: './band-list.component.html',
   styleUrl: './band-list.component.scss'
 })
 export class BandListComponent implements OnInit {
-    bands: any[] = [];
+    originalBands: any[] = [];
     keyword: string = '';
+    bands: any[] = [];
 
     constructor(private bandService: BandService) {}
 
     ngOnInit() {
-      this.bandService.fetchBands().subscribe(data => this.bands = data);
+      this.bandService.fetchBands().subscribe(data => {
+        this.originalBands = data;
+        this.bands = data;
+        });
+
      }
 
    onSearch() {
-      this.bandService.search(this.keyword).subscribe(data => this.bands = data);
+      this.bands = this.originalBands.filter(
+        band => band.name.toLowerCase().includes(this.keyword.toLowerCase()));
      }
 
    clear() {

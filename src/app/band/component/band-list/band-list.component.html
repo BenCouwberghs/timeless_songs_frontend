@@ -5,11 +5,18 @@
     </ng-template>
     <ng-template #center>
       <div class="flex space-x-1 pt-2">
-        <input pInputText placeholder="Search band" [(ngModel)]="keyword" (keydown.enter)="onSearch()"/>
-        <p-button icon="pi pi-search" (click)="onSearch()"></p-button>
+
+        <p-inputgroup>
+          <input pInputText placeholder="Search band" [(ngModel)]="keyword" (input)="onSearch()"/>
+          <p-inputgroup-addon>
+            <i class="pi pi-search"></i>
+          </p-inputgroup-addon>
+        </p-inputgroup>
+
         @if (keyword) {
         <p-button icon="pi pi-times" (click)="clear()"></p-button>
         }
+
       </div>
     </ng-template>
     <ng-template #end>
