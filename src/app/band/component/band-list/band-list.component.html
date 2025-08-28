@@ -1,0 +1,40 @@
+<div class="w-full max-w-screen-md mx-auto px-4">
+  <p-toolbar>
+    <ng-template #start>
+      <h2 class="text-2xl text-gray-800">Overview Bands</h2>
+    </ng-template>
+    <ng-template #center>
+      <div class="flex space-x-1 pt-2">
+
+        <p-inputgroup>
+          <input pInputText placeholder="Search band" [(ngModel)]="keyword" (input)="onSearch()"/>
+          <p-inputgroup-addon>
+            <i class="pi pi-search"></i>
+          </p-inputgroup-addon>
+        </p-inputgroup>
+
+        @if (keyword) {
+        <p-button icon="pi pi-times" (click)="clear()"></p-button>
+        }
+
+      </div>
+    </ng-template>
+    <ng-template #end>
+      <button type="button" icon="pi pi-plus" [rounded]="true" [outlined]="true" pTooltip="Add band" pButton [routerLink]="'/band-form'">
+      </button>
+    </ng-template>
+  </p-toolbar>
+
+  <ul class="divide-y divide-gray-200">
+    @for (band of bands; track band) {
+    <li>
+      <a
+        [routerLink]="['/band-form', band.id]"
+        class="flex p-4 hover:bg-gray-100 text-blue-600"
+      >
+        {{ band.name }}
+      </a>
+    </li>
+    }
+  </ul>
+</div>
