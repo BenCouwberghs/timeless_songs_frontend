@@ -7,6 +7,7 @@ import { BandService } from '../../service/band.service';
 import { InputTextModule } from 'primeng/inputtext';
 import { ToolbarModule } from 'primeng/toolbar';
 import { ButtonModule } from 'primeng/button';
+import { TooltipModule } from 'primeng/tooltip';
 
 import { InputGroupModule } from 'primeng/inputgroup';
 import { InputGroupAddonModule } from 'primeng/inputgroupaddon';
@@ -14,7 +15,7 @@ import { InputGroupAddonModule } from 'primeng/inputgroupaddon';
 @Component({
   selector: 'app-band-list',
   imports: [RouterLink, FormsModule, InputTextModule, ButtonModule, ToolbarModule, InputGroupModule,
-    InputGroupAddonModule],
+    InputGroupAddonModule, TooltipModule],
   templateUrl: './band-list.component.html',
   styleUrl: './band-list.component.scss'
 })
