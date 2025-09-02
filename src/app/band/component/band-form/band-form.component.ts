@@ -15,7 +15,7 @@ import { InputGroupAddonModule } from 'primeng/inputgroupaddon';
 @Component({
   selector: 'app-band-form',
   imports: [
-  FormsModule, InputTextModule, FluidModule, ToastModule, ButtonModule, ConfirmDialogModule
+  FormsModule, InputTextModule, FluidModule, ToastModule, ButtonModule, ConfirmDialogModule,
     InputGroupModule, InputGroupAddonModule],
   providers: [ConfirmationService],
   templateUrl: './band-form.component.html',
