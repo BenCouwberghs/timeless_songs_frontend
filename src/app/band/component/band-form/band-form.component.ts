@@ -24,6 +24,7 @@ import { InputGroupAddonModule } from 'primeng/inputgroupaddon';
 export class BandFormComponent {
   name: string = '';
   linkWikiPage: string  = '';
+  comments: string = '';
   band: any;
   update = false;
   id: any;
@@ -40,6 +41,7 @@ export class BandFormComponent {
          this.band = res;
          this.name = this.band.name;
          this.linkWikiPage = this.band.linkWikiPage;
+         this.comments = this.band.comments;
        });
     }
   }
@@ -51,7 +53,7 @@ export class BandFormComponent {
     }
 
     if(this.update == false) {
-    this.bandService.saveBand(this.name, this.linkWikiPage).subscribe({
+    this.bandService.saveBand(this.name, this.linkWikiPage, this.comments).subscribe({
       next: () => {
         this.notificationService.sendSuccess('Success', `Band ${this.name} has been added`);
         this.gotoBandList();
@@ -62,7 +64,7 @@ export class BandFormComponent {
         }
       });
     } else {
-      this.bandService.modifyBand(this.name, this.linkWikiPage, this.id).subscribe({
+      this.bandService.modifyBand(this.name, this.linkWikiPage, this.comments, this.id).subscribe({
         next: () => this.gotoBandList(),
         error: err => {
           console.error('Error:', err);
