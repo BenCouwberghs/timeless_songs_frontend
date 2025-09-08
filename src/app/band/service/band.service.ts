@@ -11,8 +11,8 @@ export class BandService {
 
   constructor(private http: HttpClient) {}
 
-    modifyBand(name: string, linkWikiPage: string, id: number): Observable<string> {
-        const bandDto = { id, name, linkWikiPage };
+    modifyBand(name: string, linkWikiPage: string, comments: string, id: number): Observable<string> {
+        const bandDto = { id, name, linkWikiPage, comments };
         return this.http.patch<string>(`${this.apiUrl}/bands/${id}`, bandDto, {responseType: 'text' as 'json'});
       }
 
@@ -24,8 +24,8 @@ export class BandService {
         return this.http.get<any[]>(`${this.apiUrl}/bands`);
       }
 
-    saveBand(name: string, linkWikiPage: string): Observable<string> {
-        const bandDto = { name, linkWikiPage };
+    saveBand(name: string, linkWikiPage: string, comments: string): Observable<string> {
+        const bandDto = { name, linkWikiPage, comments };
         return this.http.post<string>(`${this.apiUrl}/bands`, bandDto, {responseType: 'text' as 'json'});
       }
 
