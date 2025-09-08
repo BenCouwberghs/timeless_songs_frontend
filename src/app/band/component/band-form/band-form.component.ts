@@ -65,7 +65,10 @@ export class BandFormComponent {
       });
     } else {
       this.bandService.modifyBand(this.name, this.linkWikiPage, this.comments, this.id).subscribe({
-        next: () => this.gotoBandList(),
+        next: () => {
+          this.notificationService.sendSuccess('Success', `Band ${this.name} has been successfully modified`);
+          this.gotoBandList();
+          },
         error: err => {
           console.error('Error:', err);
           this.notificationService.sendError('Error', err.message);
