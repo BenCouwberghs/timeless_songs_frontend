@@ -8,7 +8,7 @@ import { Observable } from 'rxjs';
 })
 
 export class SongService {
-  private apiUrl = environment.apiUrl;
+  private apiUrl = environment.apiBaseUrl;
 
   constructor(private http: HttpClient) {}
 
