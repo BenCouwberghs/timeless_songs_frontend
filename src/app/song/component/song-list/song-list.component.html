@@ -1,3 +1,16 @@
-<h2>
-  Currently under development.
-</h2>
+<div class="w-full max-w-screen-md mx-auto px-4">
+  <p-toolbar>
+    <ng-template #start>
+      <h2 class="text-2xl text-gray-800">Overview Songs</h2>
+    </ng-template>
+  </p-toolbar>
+
+  <ul class="divide-y divide-gray-200">
+    @for (song of songs; track song) {
+    <li class="flex justify-between py-2">
+      <span>{{ song.name }}</span>
+      <span>{{ song.band.name }}</span>
+    </li>
+    }
+  </ul>
+</div>
