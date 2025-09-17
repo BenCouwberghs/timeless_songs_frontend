@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 import { FormsModule } from "@angular/forms";
 import { SongService } from '../../service/song.service';
 import { InputTextModule } from 'primeng/inputtext';
@@ -27,7 +28,7 @@ export class SongFormComponent {
   update = false;
   id: any;
 
-  constructor(private songService: SongService, private notificationService: NotificationService,
+  constructor(private router: Router, private songService: SongService, private notificationService: NotificationService,
     private confirmationService: ConfirmationService) {}
 
   onSave() {
@@ -45,7 +46,7 @@ export class SongFormComponent {
   }
 
   gotoSongList() {
-
+    this.router.navigate(['/song-list']);
   }
 
   onCancel() {
