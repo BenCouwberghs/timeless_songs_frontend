@@ -50,6 +50,6 @@ export class SongFormComponent {
   }
 
   onCancel() {
-
+    this.gotoSongList();
   }
 }
