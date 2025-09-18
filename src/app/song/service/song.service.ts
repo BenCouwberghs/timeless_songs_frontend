@@ -30,4 +30,7 @@ export class SongService {
     return this.http.patch<string>(`${this.apiUrl}/songs/${id}`, songDto, {responseType: 'text' as 'json'});
   }
 
+  deleteSong(id: number): Observable<string> {
+    return this.http.delete<string>(`${this.apiUrl}/songs/${id}`, {responseType: 'text' as 'json'});
+  }
 }
