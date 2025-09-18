@@ -13,7 +13,13 @@
   <ul class="divide-y divide-gray-200">
     @for (song of songs; track song) {
     <li class="flex justify-between py-2">
-      <span>{{ song.name }}</span>
+      <a
+        [routerLink]="['/song-form', song.id]"
+        class="flex p-4 hover:bg-gray-100 text-blue-600"
+      >
+        <span>{{ song.name }}</span>
+      </a>
+
       <span>{{ song.band.name }}</span>
     </li>
     }
