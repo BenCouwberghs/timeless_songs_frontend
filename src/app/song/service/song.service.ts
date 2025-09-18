@@ -12,6 +12,10 @@ export class SongService {
 
   constructor(private http: HttpClient) {}
 
+  fetchSong(id: number): Observable<any> {
+      return this.http.get<any>(`${this.apiUrl}/songs/${id}`);
+  }
+
   fetchSongs(): Observable<any> {
     return this.http.get<any[]>(`${this.apiUrl}/songs`);
   }
