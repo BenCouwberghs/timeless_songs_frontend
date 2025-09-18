@@ -15,4 +15,10 @@ export class SongService {
   fetchSongs(): Observable<any> {
     return this.http.get<any[]>(`${this.apiUrl}/songs`);
   }
+
+  saveSong(name: string, band: any, year: number, wikiLinkPage: string): Observable<string> {
+    const songDto = { name, band, year, wikiLinkPage };
+    return this.http.post<string>(`${this.apiUrl}/songs`, songDto, {responseType: 'text' as 'json'});
+  }
+
 }
