@@ -15,4 +15,5 @@ export const routes: Routes = [
 {path: 'credits', component: CreditsComponent},
 {path: 'song-list', component: SongListComponent},
 {path: 'song-form', component: SongFormComponent},
+{path: 'song-form/:id', component: SongFormComponent},
   ];
