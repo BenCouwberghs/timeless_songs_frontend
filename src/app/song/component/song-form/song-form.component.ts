@@ -87,7 +87,7 @@ export class SongFormComponent {
     this.songService.deleteSong(this.id).subscribe({
       next: () => {
         this.notificationService.sendInfo('Confirmed', `You have deleted the song ${this.song.name}`);
-        gotoSongList();
+        this.gotoSongList();
       },
       error: err => {
         console.error('Error', err);
