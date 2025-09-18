@@ -13,7 +13,7 @@
       <div>
         <label class="block mb-1 font-medium">Band</label>
         <p-select id="band" name="band" [options]="bands" [(ngModel)]="selectedBand" optionLabel="name"
-                  placeholder="Select a band" class="w-full"></p-select>
+                  placeholder="Select a band" [filter]="true" filterBy="name" class="w-full"></p-select>
       </div>
 
       <div>
