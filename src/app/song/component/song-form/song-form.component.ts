@@ -41,6 +41,11 @@ export class SongFormComponent {
   }
 
   onSave() {
+    if(this.name == '') {
+      this.notificationService.sendError('Error', 'Song name cannot be empty.');
+      return;
+    }
+
     this.songService.saveSong(this.name, this.selectedBand, this.year, this.linkWikiPage).subscribe({
       next: () => {
         this.notificationService.sendSuccess('Success', `song ${this.name} has been added`);
