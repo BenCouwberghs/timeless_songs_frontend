@@ -58,17 +58,42 @@ export class SongFormComponent {
       return;
     }
 
-    this.songService.saveSong(this.name, this.selectedBand, this.year, this.linkWikiPage).subscribe({
-      next: () => {
-        this.notificationService.sendSuccess('Success', `song ${this.name} has been added`);
-        this.gotoSongList();
+    if(this.update == false) {
+      this.songService.saveSong(this.name, this.selectedBand, this.year, this.linkWikiPage).subscribe({
+        next: () => {
+          this.notificationService.sendSuccess('Success', `song ${this.name} has been added`);
+          this.gotoSongList();
         },
-      error: err => {
-        console.error('Error:', err);
-        this.notificationService.sendError('Error', `Error: ${err.message}`);
+        error: err => {
+          console.error('Error:', err);
+          this.notificationService.sendError('Error', `Error: ${err.message}`);
         }
       });
+    } else {
+      this.songService.modifySong(this.name, this.selectedBand, this.year, this.linkWikiPage, this.id).subscribe({
+        next: () => {
+          this.notificationService.sendSuccess('Success', `song ${this.name} has been modified`);
+          this.gotoSongList();
+        },
+        error: err => {
+          console.error('Error', err);
+          this.notificationService.sendError('Error', `Error: ${err.message}`);
+        }
+      });
+    }
+  }
 
+  onDelete() {
+    this.songService.deleteSong(this.id).subscribe({
+      next: () => {
+        this.notificationService.sendInfo('Confirmed', `You have deleted the song ${this.song.name}`);
+        gotoSongList();
+      },
+      error: err => {
+        console.error('Error', err);
+        this.notificationService.sendError('Error', `Error: ${err.message}`);
+      }
+    })
   }
 
   gotoSongList() {
