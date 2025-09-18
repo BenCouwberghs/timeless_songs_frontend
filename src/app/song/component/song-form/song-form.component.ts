@@ -96,6 +96,32 @@ export class SongFormComponent {
     })
   }
 
+  deleteEvent(event: Event) {
+    this.confirmationService.confirm({
+      target: event.target as EventTarget,
+      message: `Do you want to delete the song ${this.song.name}?`,
+      header: 'Confirm delete action',
+      icon: 'pi pi-info-circle',
+      rejectLabel: 'Cancel',
+      rejectButtonProps: {
+        label: 'Cancel',
+        severity: 'secondary',
+        outlined: true,
+      },
+      acceptButtonProps: {
+        label: 'Delete',
+        severity: 'danger',
+      },
+
+      accept: () => {
+        this.onDelete();
+      },
+      reject: () => {
+        this.notificationService.sendError('Rejected', 'You have rejected');
+      },
+    })
+  }
+
   gotoSongList() {
     this.router.navigate(['/song-list']);
   }
