@@ -16,8 +16,8 @@ export class SongService {
     return this.http.get<any[]>(`${this.apiUrl}/songs`);
   }
 
-  saveSong(name: string, band: any, year: number, linkWikiPage: string): Observable<string> {
-    const songDto = { name, band, year, linkWikiPage };
+  saveSong(name: string, band: any, year: number, wikiLinkPage: string): Observable<string> {
+    const songDto = { name, band, year, wikiLinkPage };
     return this.http.post<string>(`${this.apiUrl}/songs`, songDto, {responseType: 'text' as 'json'});
   }
 
