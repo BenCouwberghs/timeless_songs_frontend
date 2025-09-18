@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { FormsModule } from "@angular/forms";
 import { SongService } from '../../service/song.service';
 import { BandService } from '../../../band/service/band.service';
@@ -31,13 +31,25 @@ export class SongFormComponent {
   update = false;
   id: any;
 
-  constructor(private router: Router, private songService: SongService, private bandService: BandService,
+  constructor(private route: ActivatedRoute, private router: Router, private songService: SongService, private bandService: BandService,
     private notificationService: NotificationService,private confirmationService: ConfirmationService) {}
 
   ngOnInit() {
-      this.bandService.fetchBands().subscribe(data => {
-        this.bands = data;
+    this.bandService.fetchBands().subscribe(data => {
+      this.bands = data;
+    })
+
+    this.id = this.route.snapshot.paramMap.get('id');
+    if(this.id != null) {
+      this.update = true;
+      this.songService.fetchSong(this.id).subscribe(res => {
+        this.song = res;
+        this.name = this.song.name;
+        this.selectedBand = this.song.band;
+        this.year = this.song.year;
+        this.linkWikiPage = this.song.wikiLinkPage;
       })
+    }
   }
 
   onSave() {
