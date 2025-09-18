@@ -25,4 +25,9 @@ export class SongService {
     return this.http.post<string>(`${this.apiUrl}/songs`, songDto, {responseType: 'text' as 'json'});
   }
 
+  modifySong(name: string, band: any, year: number, linkWikiPage: string, id: number): Observable<string> {
+    const songDto = { id, name, band, year, linkWikiPage };
+    return this.http.patch<string>(`${this.apiUrl}/songs/${id}`, songDto, {responseType: 'text' as 'json'});
+  }
+
 }
