@@ -11,12 +11,13 @@ import { ConfirmationService } from 'primeng/api';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { InputGroupModule } from 'primeng/inputgroup';
 import { InputGroupAddonModule } from 'primeng/inputgroupaddon';
+import { TextareaModule } from 'primeng/textarea';
 
 @Component({
   selector: 'app-band-form',
   imports: [
   FormsModule, InputTextModule, FluidModule, ToastModule, ButtonModule, ConfirmDialogModule,
-    InputGroupModule, InputGroupAddonModule],
+    InputGroupModule, InputGroupAddonModule, TextareaModule],
   providers: [ConfirmationService],
   templateUrl: './band-form.component.html',
   styleUrl: './band-form.component.scss'
