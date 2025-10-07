@@ -1,27 +1,19 @@
 <div class="w-full max-w-screen-md mx-auto px-4">
   <p-toolbar>
     <ng-template #start>
-      <h2 class="text-2xl text-gray-800">Overview Bands</h2>
-    </ng-template>
-    <ng-template #center>
-      <div class="flex space-x-1 pt-2">
-
-        <p-inputgroup>
-          <input pInputText placeholder="Search band" [(ngModel)]="keyword" (input)="onSearch()"/>
-          <p-inputgroup-addon>
-            <i class="pi pi-search"></i>
-          </p-inputgroup-addon>
-        </p-inputgroup>
-
-        @if (keyword) {
-        <p-button icon="pi pi-times" (click)="clear()"></p-button>
-        }
-
-      </div>
+      <h2 class="text-2xl text-gray-800">Bands</h2>
     </ng-template>
     <ng-template #end>
-      <button type="button" icon="pi pi-plus" [rounded]="true" [outlined]="true" pTooltip="Add band" pButton [routerLink]="'/band-form'">
-      </button>
+      @if (searchInputVisible) {
+        <input  pInputText placeholder="Search band" [(ngModel)]="keyword" (input)="onSearch()"/>
+        <button type="button" icon="pi pi-times" [outlined]="true" pButton (click)="hideSearchInput()">
+        </button>
+      } @else {
+        <button type="button" icon="pi pi-plus" [outlined]="true" pTooltip="Add band" pButton [routerLink]="'/band-form'">
+        </button>&nbsp;
+        <button type="button" icon="pi pi-search" [outlined]="true" pButton pTooltip="Search" (click)="showSearchInput()">
+        </button>
+      }
     </ng-template>
   </p-toolbar>
 
