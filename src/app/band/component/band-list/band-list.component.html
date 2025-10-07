@@ -5,7 +5,8 @@
     </ng-template>
     <ng-template #end>
       @if (searchInputVisible) {
-        <input  pInputText placeholder="Search band" [(ngModel)]="keyword" (input)="onSearch()"/>
+        <input size="18" pInputText placeholder="Search band" [(ngModel)]="keyword" (input)="onSearch()"/>
+        &nbsp;
         <button type="button" icon="pi pi-times" [outlined]="true" pButton (click)="hideSearchInput()">
         </button>
       } @else {
