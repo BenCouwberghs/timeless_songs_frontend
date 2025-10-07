@@ -20,6 +20,7 @@ import { InputGroupAddonModule } from 'primeng/inputgroupaddon';
   styleUrl: './band-list.component.scss'
 })
 export class BandListComponent implements OnInit {
+    searchInputVisible = false;
     originalBands: any[] = [];
     keyword: string = '';
     bands: any[] = [];
@@ -33,6 +34,14 @@ export class BandListComponent implements OnInit {
         });
 
      }
+
+    showSearchInput() {
+      this.searchInputVisible = true;
+    }
+
+    hideSearchInput() {
+      this.searchInputVisible = false;
+    }
 
    onSearch() {
       this.bands = this.originalBands.filter(
