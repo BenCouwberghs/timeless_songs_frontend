@@ -14,6 +14,7 @@ import { environment } from '../environments/environment';
 })
 export class AppComponent  implements OnInit {
   title = 'timeless_songs_frontend';
+  isMenuOpen = false;
 
   private apiUrl = environment.apiBaseUrl;
 
@@ -22,4 +23,8 @@ export class AppComponent  implements OnInit {
   ngOnInit() {
     console.log('Init');
    }
+
+  closeMenu() {
+      this.isMenuOpen = false;
+  }
 }
