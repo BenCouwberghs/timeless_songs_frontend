@@ -12,18 +12,21 @@ import { TooltipModule } from 'primeng/tooltip';
 import { InputGroupModule } from 'primeng/inputgroup';
 import { InputGroupAddonModule } from 'primeng/inputgroupaddon';
 
+import { Band } from '../../../model/band';
+import { BandOverviewInfoComponent } from './band-overview-info/band-overview-info.component';
+
 @Component({
   selector: 'app-band-list',
   imports: [RouterLink, FormsModule, InputTextModule, ButtonModule, ToolbarModule, InputGroupModule,
-    InputGroupAddonModule, TooltipModule],
+    InputGroupAddonModule, TooltipModule, BandOverviewInfoComponent],
   templateUrl: './band-list.component.html',
   styleUrl: './band-list.component.scss'
 })
 export class BandListComponent implements OnInit {
     searchInputVisible = false;
-    originalBands: any[] = [];
+    originalBands: Band[] = [];
     keyword: string = '';
-    bands: any[] = [];
+    bands: Band[] = [];
 
     constructor(private bandService: BandService) {}
 
