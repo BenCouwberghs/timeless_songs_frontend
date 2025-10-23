@@ -24,10 +24,9 @@
       <a
         [routerLink]="['/band-form', band.id]"
         class="flex p-4 hover:bg-gray-100 text-blue-600"
-      > {{ band.name }} </a>
-      <span class="text-gray-600 text-sm">
-        {{ band.songs?.length }} songs
-      </span>
+      >
+        <band-overview-info [band]="band"></band-overview-info>
+      </a>
     </li>
     }
   </ul>

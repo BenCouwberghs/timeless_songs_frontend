@@ -3,6 +3,8 @@ import { HttpClient } from '@angular/common/http';
 import { environment } from '../../../environments/environment';
 import { Observable } from 'rxjs';
 
+import { Band } from '../../model/band';
+
 @Injectable({
   providedIn: 'root'
 })
@@ -20,8 +22,8 @@ export class BandService {
         return this.http.get<any>(`${this.apiUrl}/bands/${id}`);
       }
 
-    fetchBands(): Observable<any> {
-        return this.http.get<any[]>(`${this.apiUrl}/bands`);
+    fetchBands(): Observable<Band[]> {
+        return this.http.get<Band[]>(`${this.apiUrl}/bands`);
       }
 
     saveBand(name: string, linkWikiPage: string, comments: string): Observable<string> {
