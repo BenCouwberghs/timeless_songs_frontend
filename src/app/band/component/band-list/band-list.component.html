@@ -18,16 +18,29 @@
     </ng-template>
   </p-toolbar>
 
-  <ul class="divide-y divide-gray-200">
+  <div
+    class="grid grid-cols-2 gap-4
+       sm:grid-cols-2
+       md:grid-cols-3
+       lg:grid-cols-4
+       xl:grid-cols-5
+       p-4"
+  >
     @for (band of bands; track band) {
-    <li class="flex justify-between items-center p-4 hover:bg-gray-100">
-      <a
-        [routerLink]="['/band-form', band.id]"
-        class="flex p-4 hover:bg-gray-100 text-blue-600"
-      >
-        <band-overview-info [band]="band"></band-overview-info>
-      </a>
-    </li>
+    <a
+      [routerLink]="['/band-form', band.id]"
+      class="block bg-white dark:bg-gray-800 rounded-xl overflow-hidden
+           shadow-sm hover:shadow-md hover:-translate-y-1
+           transition-all duration-200
+           flex flex-col h-full"
+    >
+      <div class="flex flex-col h-full">
+        <band-overview-info
+          class="flex-1 flex flex-col justify-between p-4"
+          [band]="band"
+        ></band-overview-info>
+      </div>
+    </a>
     }
-  </ul>
+  </div>
 </div>
