@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { FormsModule } from "@angular/forms";
 import { BandService } from '../../service/band.service';
 import { InputTextModule } from 'primeng/inputtext';
@@ -17,7 +17,7 @@ import { TextareaModule } from 'primeng/textarea';
   selector: 'app-band-form',
   imports: [
   FormsModule, InputTextModule, FluidModule, ToastModule, ButtonModule, ConfirmDialogModule,
-    InputGroupModule, InputGroupAddonModule, TextareaModule],
+    InputGroupModule, InputGroupAddonModule, TextareaModule, RouterLink],
   providers: [ConfirmationService],
   templateUrl: './band-form.component.html',
   styleUrl: './band-form.component.scss'
