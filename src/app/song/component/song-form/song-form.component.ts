@@ -45,9 +45,10 @@ export class SongFormComponent {
       this.songService.fetchSong(this.id).subscribe(res => {
         this.song = res;
         this.name = this.song.name;
-        this.selectedBand = this.song.band;
         this.year = this.song.year;
         this.linkWikiPage = this.song.wikiLinkPage;
+
+        this.selectedBand = this.bands.find(b => b.id === this.song.band.id);
       })
     }
   }
