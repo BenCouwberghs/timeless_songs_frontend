@@ -54,6 +54,7 @@
       }
     </form>
 
+    @if(update) {
     <ul class="divide-y divide-gray-200">
       @for (song of band.songs; track song) {
       <li class="flex justify-between py-2">
@@ -66,6 +67,6 @@
       </li>
       }
     </ul>
-
+    }
   </p-fluid>
 </div>
