@@ -54,18 +54,19 @@
       }
     </form>
 
-    <ul class="divide-y divide-gray-200">
-      @for (song of band.songs; track song) {
-      <li class="flex justify-between py-2">
-        <a
-          [routerLink]="['/song-form', song.id]"
-          class="flex p-4 hover:bg-gray-100 text-blue-600"
-        >
-          <span>{{ song.name }}</span>
-        </a>
-      </li>
-      }
-    </ul>
-
+    @if(update) {
+      <ul class="divide-y divide-gray-200">
+        @for (song of band.songs; track song) {
+        <li class="flex justify-between py-2">
+          <a
+            [routerLink]="['/song-form', song.id]"
+            class="flex p-4 hover:bg-gray-100 text-blue-600"
+          >
+            <span>{{ song.name }}</span>
+          </a>
+        </li>
+        }
+      </ul>
+    }
   </p-fluid>
 </div>
