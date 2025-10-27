@@ -37,20 +37,20 @@ export class SongFormComponent {
   ngOnInit() {
     this.bandService.fetchBands().subscribe(data => {
       this.bands = data;
+
+      this.id = this.route.snapshot.paramMap.get('id');
+          if(this.id != null) {
+            this.update = true;
+            this.songService.fetchSong(this.id).subscribe(res => {
+              this.song = res;
+              this.name = this.song.name;
+              this.year = this.song.year;
+              this.linkWikiPage = this.song.wikiLinkPage;
+
+              this.selectedBand = this.bands.find(b => b.id === this.song.band.id);
+            })
+          }
     })
-
-    this.id = this.route.snapshot.paramMap.get('id');
-    if(this.id != null) {
-      this.update = true;
-      this.songService.fetchSong(this.id).subscribe(res => {
-        this.song = res;
-        this.name = this.song.name;
-        this.year = this.song.year;
-        this.linkWikiPage = this.song.wikiLinkPage;
-
-        this.selectedBand = this.bands.find(b => b.id === this.song.band.id);
-      })
-    }
   }
 
   onSave() {
