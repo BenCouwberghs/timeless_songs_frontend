@@ -35,14 +35,14 @@ export class SongFormComponent {
     private notificationService: NotificationService,private confirmationService: ConfirmationService) {}
 
   ngOnInit() {
-    this.bandService.fetchBands().subscribe(data => {
-      this.bands = data;
+    this.bandService.fetchBands().subscribe(retrievedBands => {
+      this.bands = retrievedBands;
 
       this.id = this.route.snapshot.paramMap.get('id');
           if(this.id != null) {
             this.update = true;
-            this.songService.fetchSong(this.id).subscribe(res => {
-              this.song = res;
+            this.songService.fetchSong(this.id).subscribe(retrievedSong => {
+              this.song = retrievedSong;
               this.name = this.song.name;
               this.year = this.song.year;
               this.linkWikiPage = this.song.wikiLinkPage;
