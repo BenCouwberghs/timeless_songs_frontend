@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 import { RouterLink } from '@angular/router';
-import {FormsModule} from "@angular/forms";
+import { FormsModule } from "@angular/forms";
 import { BandService } from '../../service/band.service';
 
 import { InputTextModule } from 'primeng/inputtext';
@@ -39,8 +39,7 @@ export class BandListComponent implements OnInit {
       this.bandService.fetchBands().subscribe(data => {
         this.originalBands = data;
         this.applySort();
-        });
-
+      });
      }
 
     showSearchInput() {
@@ -54,15 +53,15 @@ export class BandListComponent implements OnInit {
    onSearch() {
       this.bands = this.originalBands.filter(
         band => band.name.toLowerCase().includes(this.keyword.toLowerCase()));
-     }
+   }
 
    clear() {
      this.keyword = '';
      this.ngOnInit();
-     }
+   }
 
-  applySort() {
+   applySort() {
     console.log('Applied sorting for bands:', this.selectedSort);
     this.bands = this.originalBands; // TODO sort the bands
-  }
+   }
 }
