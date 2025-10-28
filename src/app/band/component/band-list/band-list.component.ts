@@ -63,12 +63,7 @@ export class BandListComponent implements OnInit {
 
    applySort() {
     console.log('Applied sorting for bands:', this.selectedSort);
+    this.bands = this.sortService.sortBand(this.originalBands, selectedSort);
 
-    const selectedSort = this.sorts.find(sort => sort.id === this.selectedSort);
-      if (selectedSort) {
-        this.bands = this.sortService.sortBand(this.originalBands, selectedSort);
-      } else {
-        this.bands = [...this.originalBands];
-      }
    }
 }
