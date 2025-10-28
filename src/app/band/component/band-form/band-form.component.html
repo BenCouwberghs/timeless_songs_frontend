@@ -56,7 +56,7 @@
 
     @if(update) {
       <ul class="divide-y divide-gray-200">
-        @for (song of band.songs; track song) {
+        @for (song of band?.songs; track song) {
         <li class="flex justify-between py-2">
           <a
             [routerLink]="['/song-form', song.id]"
