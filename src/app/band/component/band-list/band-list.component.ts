@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { FormsModule } from "@angular/forms";
 import { BandService } from '../../service/band.service';
+import { SortService } from '../../../service/sort.service';
 
 import { InputTextModule } from 'primeng/inputtext';
 import { ToolbarModule } from 'primeng/toolbar';
@@ -16,7 +17,7 @@ import { PopoverModule } from 'primeng/popover';
 
 import { Band } from '../../../model/band';
 import { BandOverviewInfoComponent } from './band-overview-info/band-overview-info.component';
-import { kindOfBandSorts, BandSortId } from '../../../model/sorting';
+import { kindOfBandSorts, BandSortId, BandSort } from '../../../model/sorting';
 
 @Component({
   selector: 'app-band-list',
@@ -33,7 +34,7 @@ export class BandListComponent implements OnInit {
     sorts = kindOfBandSorts;
     selectedSort: BandSortId = 'bandsAsc';
 
-    constructor(private bandService: BandService) {}
+    constructor(private bandService: BandService, private sortService: SortService) {}
 
     ngOnInit() {
       this.bandService.fetchBands().subscribe(data => {
@@ -62,6 +63,7 @@ export class BandListComponent implements OnInit {
 
    applySort() {
     console.log('Applied sorting for bands:', this.selectedSort);
-    this.bands = this.originalBands; // TODO sort the bands
+    this.bands = this.sortService.sortBand(this.originalBands, selectedSort);
+
    }
 }
