@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Band } from '../model/band';
-import { BandSort } from '../model/sorting';
+import { BandSortId } from '../model/sorting';
 
 @Injectable({
   providedIn: 'root'
@@ -10,10 +10,10 @@ export class SortService {
 
   constructor() {}
 
-  sortBand(bands: Band[], bandSort: BandSort): Band[] {
+  sortBand(bands: Band[], bandSortId: BandSortId): Band[] {
     if (!bands || bands.length === 0) return [];
 
-    switch (bandSort.id) {
+    switch (bandSortId) {
       case ('bandsAsc'): {
         return [...bands].sort((a, b) => a.name.localeCompare(b.name));
       }
