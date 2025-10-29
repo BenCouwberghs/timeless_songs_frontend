@@ -46,6 +46,11 @@
         </p-inputgroup>
       </div>
 
+      <div>
+        <label for="youTubeClipCode" class="block mb-1 font-medium">youTubeClipCode</label>
+        <input pInputText id="youTubeClipCode" name="youTubeClipCode" [(ngModel)]="youTubeClipCode"/>
+      </div>
+
       @if (update) {
       <div class="flex justify-end space-x-3 pt-4">
         <p-button type="button" styleClass="p-button-secondary" (click)="onCancel()" label="Cancel"></p-button>
