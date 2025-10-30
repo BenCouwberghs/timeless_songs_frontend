@@ -12,7 +12,7 @@ export class SongPlayerComponent {
   @Input()
   clipCode?: string;
 
-      get videoUrl() {
-        return `https://www.youtube.com/embed/${this.clipCode}`;
-      }
+  get videoUrl() {
+    return `https://www.youtube.com/embed/${this.clipCode}`;
+  }
 }
