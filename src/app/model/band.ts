@@ -1,7 +1,7 @@
 import { Song } from './song';
 
 export interface Band {
-  id: number;
+  id?: number;
   name: string;
   linkWikiPage: string;
   comments: string;
