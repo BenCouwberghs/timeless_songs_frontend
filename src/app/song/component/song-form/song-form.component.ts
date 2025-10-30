@@ -25,6 +25,7 @@ export class SongFormComponent {
   name: string = '';
   linkWikiPage: string  = '';
   year: number = 0;
+  youTubeClipCode: string = '';
   selectedBand: any;
   bands: any[] = [];
   song: any;
@@ -46,6 +47,7 @@ export class SongFormComponent {
               this.name = this.song.name;
               this.year = this.song.year;
               this.linkWikiPage = this.song.wikiLinkPage;
+              this.youTubeClipCode = this.song.youTubeClipCode;
 
               this.selectedBand = this.bands.find(b => b.id === this.song.band.id);
             })
@@ -60,7 +62,8 @@ export class SongFormComponent {
     }
 
     if(this.update == false) {
-      this.songService.saveSong(this.name, this.selectedBand, this.year, this.linkWikiPage).subscribe({
+      this.songService.saveSong(this.name, this.selectedBand, this.year, this.linkWikiPage,
+        this.youTubeClipCode).subscribe({
         next: () => {
           this.notificationService.sendSuccess('Success', `song ${this.name} has been added`);
           this.gotoSongList();
@@ -71,7 +74,8 @@ export class SongFormComponent {
         }
       });
     } else {
-      this.songService.modifySong(this.name, this.selectedBand, this.year, this.linkWikiPage, this.id).subscribe({
+      this.songService.modifySong(this.name, this.selectedBand, this.year, this.linkWikiPage,
+        this.youTubeClipCode, this.id).subscribe({
         next: () => {
           this.notificationService.sendSuccess('Success', `song ${this.name} has been modified`);
           this.gotoSongList();
