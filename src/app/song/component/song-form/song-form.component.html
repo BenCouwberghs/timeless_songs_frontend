@@ -51,6 +51,14 @@
         <input pInputText id="youTubeClipCode" name="youTubeClipCode" [(ngModel)]="song.youTubeClipCode"/>
       </div>
 
+      @if (song.youTubeClipCode) {
+      <div class="w-full max-w-xl aspect-video">
+        <app-song-player
+          [clipCode]="song.youTubeClipCode"
+        ></app-song-player>
+      </div>
+      }
+
       @if (update) {
       <div class="flex justify-end space-x-3 pt-4">
         <p-button type="button" styleClass="p-button-secondary" (click)="onCancel()" label="Cancel"></p-button>

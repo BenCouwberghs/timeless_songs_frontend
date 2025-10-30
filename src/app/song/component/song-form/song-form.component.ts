@@ -12,6 +12,7 @@ import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { InputGroupModule } from 'primeng/inputgroup';
 import { InputGroupAddonModule } from 'primeng/inputgroupaddon';
 import { SelectModule } from 'primeng/select';
+import { SongPlayerComponent } from '../../../sharedComponents/song-player/song-player.component';
 
 import { Band } from '../../../model/band';
 import { Song } from '../../../model/song';
@@ -19,7 +20,7 @@ import { Song } from '../../../model/song';
 @Component({
   selector: 'app-song-form',
   imports: [FormsModule, InputTextModule, ButtonModule, FluidModule, ConfirmDialogModule, InputGroupModule,
-    InputGroupAddonModule, SelectModule],
+    InputGroupAddonModule, SelectModule, SongPlayerComponent],
   providers: [ConfirmationService],
   templateUrl: './song-form.component.html',
 })
