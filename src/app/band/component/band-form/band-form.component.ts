@@ -13,6 +13,8 @@ import { InputGroupModule } from 'primeng/inputgroup';
 import { InputGroupAddonModule } from 'primeng/inputgroupaddon';
 import { TextareaModule } from 'primeng/textarea';
 
+import { Band } from '../../../model/band';
+
 @Component({
   selector: 'app-band-form',
   imports: [
@@ -23,10 +25,12 @@ import { TextareaModule } from 'primeng/textarea';
   styleUrl: './band-form.component.scss'
 })
 export class BandFormComponent {
-  name: string = '';
-  linkWikiPage: string  = '';
-  comments: string = '';
-  band: any;
+
+  band: Band = {
+    name:'',
+    linkWikiPage: '',
+    comments: ''
+  }
   update = false;
   id: any;
 
@@ -38,25 +42,22 @@ export class BandFormComponent {
 
     if(this.id != null) {
        this.update = true;
-       this.bandService.fetchBand(this.id).subscribe(res => {
-         this.band = res;
-         this.name = this.band.name;
-         this.linkWikiPage = this.band.linkWikiPage;
-         this.comments = this.band.comments;
+       this.bandService.fetchBand(this.id).subscribe(receivedBand => {
+         this.band = receivedBand;
        });
     }
   }
 
   onSave() {
-    if(this.name == '') {
+    if(this.band.name == '') {
       this.notificationService.sendError('Error', 'Band name cannot be empty.');
       return;
     }
 
     if(this.update == false) {
-    this.bandService.saveBand(this.name, this.linkWikiPage, this.comments).subscribe({
+    this.bandService.saveBand(this.band).subscribe({
       next: () => {
-        this.notificationService.sendSuccess('Success', `Band ${this.name} has been added`);
+        this.notificationService.sendSuccess('Success', `Band ${this.band.name} has been added`);
         this.gotoBandList();
         },
       error: err => {
@@ -65,9 +66,9 @@ export class BandFormComponent {
         }
       });
     } else {
-      this.bandService.modifyBand(this.name, this.linkWikiPage, this.comments, this.id).subscribe({
+      this.bandService.modifyBand(this.band).subscribe({
         next: () => {
-          this.notificationService.sendSuccess('Success', `Band ${this.name} has been successfully modified`);
+          this.notificationService.sendSuccess('Success', `Band ${this.band.name} has been successfully modified`);
           this.gotoBandList();
           },
         error: err => {
