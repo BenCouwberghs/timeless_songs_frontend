@@ -60,8 +60,7 @@ export class SongFormComponent {
     }
 
     if(this.update == false) {
-      this.songService.saveSong(this.song.name, this.song.band, this.song.year, this.song.wikiLinkPage,
-        this.song.youTubeClipCode).subscribe({
+      this.songService.saveSong(this.song).subscribe({
         next: () => {
           this.notificationService.sendSuccess('Success', `song ${this.song.name} has been added`);
           this.gotoSongList();
@@ -72,8 +71,7 @@ export class SongFormComponent {
         }
       });
     } else {
-      this.songService.modifySong(this.song.name, this.song.band, this.song.year, this.song.wikiLinkPage,
-        this.song.youTubeClipCode, this.id).subscribe({
+      this.songService.modifySong(this.song).subscribe({
         next: () => {
           this.notificationService.sendSuccess('Success', `song ${this.song.name} has been modified`);
           this.gotoSongList();
