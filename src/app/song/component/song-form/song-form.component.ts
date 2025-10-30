@@ -13,6 +13,9 @@ import { InputGroupModule } from 'primeng/inputgroup';
 import { InputGroupAddonModule } from 'primeng/inputgroupaddon';
 import { SelectModule } from 'primeng/select';
 
+import { Band } from '../../../model/band';
+import { Song } from '../../../model/song';
+
 @Component({
   selector: 'app-song-form',
   imports: [FormsModule, InputTextModule, ButtonModule, FluidModule, ConfirmDialogModule, InputGroupModule,
@@ -22,13 +25,13 @@ import { SelectModule } from 'primeng/select';
 })
 
 export class SongFormComponent {
-  name: string = '';
-  linkWikiPage: string  = '';
-  year: number = 0;
-  youTubeClipCode: string = '';
-  selectedBand: any;
-  bands: any[] = [];
-  song: any;
+  bands: Band[] = [];
+  song: Song = {
+    name: '',
+    year: 0,
+    wikiLinkPage: '',
+    youTubeClipCode: ''
+  };
   update = false;
   id: any;
 
@@ -44,28 +47,23 @@ export class SongFormComponent {
             this.update = true;
             this.songService.fetchSong(this.id).subscribe(retrievedSong => {
               this.song = retrievedSong;
-              this.name = this.song.name;
-              this.year = this.song.year;
-              this.linkWikiPage = this.song.wikiLinkPage;
-              this.youTubeClipCode = this.song.youTubeClipCode;
-
-              this.selectedBand = this.bands.find(b => b.id === this.song.band.id);
+              this.song.band = this.bands.find(b => b.id === this.song.band?.id);
             })
           }
     })
   }
 
   onSave() {
-    if(this.name == '') {
+    if(this.song.name == '') {
       this.notificationService.sendError('Error', 'Song name cannot be empty.');
       return;
     }
 
     if(this.update == false) {
-      this.songService.saveSong(this.name, this.selectedBand, this.year, this.linkWikiPage,
-        this.youTubeClipCode).subscribe({
+      this.songService.saveSong(this.song.name, this.song.band, this.song.year, this.song.wikiLinkPage,
+        this.song.youTubeClipCode).subscribe({
         next: () => {
-          this.notificationService.sendSuccess('Success', `song ${this.name} has been added`);
+          this.notificationService.sendSuccess('Success', `song ${this.song.name} has been added`);
           this.gotoSongList();
         },
         error: err => {
@@ -74,10 +72,10 @@ export class SongFormComponent {
         }
       });
     } else {
-      this.songService.modifySong(this.name, this.selectedBand, this.year, this.linkWikiPage,
-        this.youTubeClipCode, this.id).subscribe({
+      this.songService.modifySong(this.song.name, this.song.band, this.song.year, this.song.wikiLinkPage,
+        this.song.youTubeClipCode, this.id).subscribe({
         next: () => {
-          this.notificationService.sendSuccess('Success', `song ${this.name} has been modified`);
+          this.notificationService.sendSuccess('Success', `song ${this.song.name} has been modified`);
           this.gotoSongList();
         },
         error: err => {
