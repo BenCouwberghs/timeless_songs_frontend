@@ -14,12 +14,12 @@ export class SongService {
 
   constructor(private http: HttpClient) {}
 
-  fetchSong(id: number): Observable<any> {
-      return this.http.get<any>(`${this.apiUrl}/songs/${id}`);
+  fetchSong(id: number): Observable<Song> {
+      return this.http.get<Song>(`${this.apiUrl}/songs/${id}`);
   }
 
-  fetchSongs(): Observable<any> {
-    return this.http.get<any[]>(`${this.apiUrl}/songs`);
+  fetchSongs(): Observable<Song[]> {
+    return this.http.get<Song[]>(`${this.apiUrl}/songs`);
   }
 
   saveSong(song: Song): Observable<string> {
