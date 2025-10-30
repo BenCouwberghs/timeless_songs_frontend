@@ -6,5 +6,5 @@ export interface Song {
   band: Band;
   year: number;
   wikiLinkPage: string;
-  youTubeClipCOde: string;
+  youTubeClipCode: string;
 }
