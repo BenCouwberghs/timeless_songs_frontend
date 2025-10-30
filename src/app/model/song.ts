@@ -1,9 +1,9 @@
 import { Band } from './band';
 
 export interface Song {
-  id: number;
+  id?: number;
   name: string;
-  band: Band;
+  band?: Band;
   year: number;
   wikiLinkPage: string;
   youTubeClipCode: string;

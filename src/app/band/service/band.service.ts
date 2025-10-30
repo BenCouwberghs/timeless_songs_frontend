@@ -13,29 +13,38 @@ export class BandService {
 
   constructor(private http: HttpClient) {}
 
-    modifyBand(name: string, linkWikiPage: string, comments: string, id: number): Observable<string> {
-        const bandDto = { id, name, linkWikiPage, comments };
-        return this.http.patch<string>(`${this.apiUrl}/bands/${id}`, bandDto, {responseType: 'text' as 'json'});
-      }
-
-    fetchBand(id: number): Observable<string> {
-        return this.http.get<any>(`${this.apiUrl}/bands/${id}`);
-      }
-
-    fetchBands(): Observable<Band[]> {
-        return this.http.get<Band[]>(`${this.apiUrl}/bands`);
-      }
-
-    saveBand(name: string, linkWikiPage: string, comments: string): Observable<string> {
-        const bandDto = { name, linkWikiPage, comments };
-        return this.http.post<string>(`${this.apiUrl}/bands`, bandDto, {responseType: 'text' as 'json'});
-      }
-
-    deleteBand(id: number): Observable<string> {
-        return this.http.delete<string>(`${this.apiUrl}/bands/${id}`, {responseType: 'text' as 'json'});
-      }
-
-    search(keyword: string): Observable<any> {
-        return this.http.get<any[]>(`${this.apiUrl}/bands/search/${keyword}`)
-        }
+  modifyBand(band: Band): Observable<string> {
+    const bandDto = {
+      id: band.id,
+      name: band.name,
+      linkWikiPage: band.linkWikiPage,
+      comments: band.comments
+    };
+    return this.http.patch<string>(`${this.apiUrl}/bands/${band.id}`, bandDto, {responseType: 'text' as 'json'});
   }
+
+  fetchBand(id: number): Observable<Band> {
+    return this.http.get<Band>(`${this.apiUrl}/bands/${id}`);
+  }
+
+  fetchBands(): Observable<Band[]> {
+    return this.http.get<Band[]>(`${this.apiUrl}/bands`);
+  }
+
+  saveBand(band: Band): Observable<string> {
+    const bandDto = {
+      name: band.name,
+      linkWikiPage: band.linkWikiPage,
+      comments: band.comments
+    };
+    return this.http.post<string>(`${this.apiUrl}/bands`, bandDto, {responseType: 'text' as 'json'});
+  }
+
+  deleteBand(id: number): Observable<string> {
+    return this.http.delete<string>(`${this.apiUrl}/bands/${id}`, {responseType: 'text' as 'json'});
+  }
+
+  search(keyword: string): Observable<Band[]> {
+    return this.http.get<Band[]>(`${this.apiUrl}/bands/search/${keyword}`)
+  }
+}
