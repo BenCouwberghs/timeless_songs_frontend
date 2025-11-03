@@ -1,19 +1,19 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { FormsModule } from "@angular/forms";
-import { BandService } from '../../service/band.service';
 import { InputTextModule } from 'primeng/inputtext';
 import { FluidModule } from 'primeng/fluid';
 import { ToastModule } from 'primeng/toast';
 import { ButtonModule } from 'primeng/button';
-import { NotificationService } from '../../../service/notification.service'
 import { ConfirmationService } from 'primeng/api';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { InputGroupModule } from 'primeng/inputgroup';
 import { InputGroupAddonModule } from 'primeng/inputgroupaddon';
 import { TextareaModule } from 'primeng/textarea';
 
-import { Band } from '../../../model/band';
+import { NotificationService } from '@service/notification.service'
+import { BandService } from '@service/band.service';
+import { Band } from '@model/band';
 
 @Component({
   selector: 'app-band-form',

@@ -2,8 +2,6 @@ import { Component, OnInit } from '@angular/core';
 
 import { RouterLink } from '@angular/router';
 import { FormsModule } from "@angular/forms";
-import { BandService } from '../../service/band.service';
-import { SortService } from '../../../service/sort.service';
 
 import { InputTextModule } from 'primeng/inputtext';
 import { ToolbarModule } from 'primeng/toolbar';
@@ -15,9 +13,11 @@ import { InputGroupModule } from 'primeng/inputgroup';
 import { InputGroupAddonModule } from 'primeng/inputgroupaddon';
 import { PopoverModule } from 'primeng/popover';
 
-import { Band } from '../../../model/band';
+import { BandService } from '@service/band.service';
+import { SortService } from '@service/sort.service';
+import { Band } from '@model/band';
 import { BandOverviewInfoComponent } from './band-overview-info/band-overview-info.component';
-import { kindOfBandSorts, BandSortId, BandSort } from '../../../model/sorting';
+import { kindOfBandSorts, BandSortId, BandSort } from '@model/sorting';
 
 @Component({
   selector: 'app-band-list',

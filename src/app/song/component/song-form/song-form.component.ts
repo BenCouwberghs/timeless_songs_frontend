@@ -1,12 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FormsModule } from "@angular/forms";
-import { SongService } from '../../service/song.service';
-import { BandService } from '../../../band/service/band.service';
 import { InputTextModule } from 'primeng/inputtext';
 import { ButtonModule } from 'primeng/button';
 import { FluidModule } from 'primeng/fluid';
-import { NotificationService } from '../../../service/notification.service'
 import { ConfirmationService } from 'primeng/api';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { InputGroupModule } from 'primeng/inputgroup';
@@ -14,8 +11,11 @@ import { InputGroupAddonModule } from 'primeng/inputgroupaddon';
 import { SelectModule } from 'primeng/select';
 import { SongPlayerComponent } from '../../../sharedComponents/song-player/song-player.component';
 
-import { Band } from '../../../model/band';
-import { Song } from '../../../model/song';
+import { NotificationService } from '@service/notification.service'
+import { SongService } from '@service/song.service';
+import { BandService } from '@service/band.service';
+import { Band } from '@model/band';
+import { Song } from '@model/song';
 
 @Component({
   selector: 'app-song-form',
