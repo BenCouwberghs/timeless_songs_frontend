@@ -1,10 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 
-import { SongService } from '../../service/song.service';
 import { ToolbarModule } from 'primeng/toolbar';
 import { RouterLink } from '@angular/router';
 import { ButtonModule } from 'primeng/button';
 import { TooltipModule } from 'primeng/tooltip';
+
+import { SongService } from '@service/song.service';
 
 @Component({
   selector: 'app-song-list',
