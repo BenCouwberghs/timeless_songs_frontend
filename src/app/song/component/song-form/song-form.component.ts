@@ -31,7 +31,9 @@ export class SongFormComponent {
     name: '',
     year: 0,
     wikiLinkPage: '',
-    youTubeClipCode: ''
+    youTubeClipCode: '',
+    genres: '',
+    rating: 0
   };
   update = false;
   id: any;
