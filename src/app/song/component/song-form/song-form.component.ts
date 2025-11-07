@@ -11,24 +11,27 @@ import { InputGroupAddonModule } from 'primeng/inputgroupaddon';
 import { SelectModule } from 'primeng/select';
 import { SongPlayerComponent } from '../../../sharedComponents/song-player/song-player.component';
 import { RatingModule } from 'primeng/rating';
+import { MultiSelectModule } from 'primeng/multiselect';
 
 
 import { NotificationService } from '@service/notification.service'
 import { SongService } from '@service/song.service';
 import { BandService } from '@service/band.service';
+import { GenreService } from '@service/genre.service';
 import { Band } from '@model/band';
 import { Song } from '@model/song';
 
 @Component({
   selector: 'app-song-form',
   imports: [FormsModule, InputTextModule, ButtonModule, FluidModule, ConfirmDialogModule, InputGroupModule,
-    InputGroupAddonModule, SelectModule, SongPlayerComponent, RatingModule],
+    InputGroupAddonModule, SelectModule, SongPlayerComponent, RatingModule, MultiSelectModule],
   providers: [ConfirmationService],
   templateUrl: './song-form.component.html',
 })
 
 export class SongFormComponent {
   bands: Band[] = [];
+  genres: any[] = [];
   song: Song = {
     name: '',
     year: 0,
@@ -40,7 +43,8 @@ export class SongFormComponent {
   update = false;
   id: any;
 
-  constructor(private route: ActivatedRoute, private router: Router, private songService: SongService, private bandService: BandService,
+  constructor(private route: ActivatedRoute, private router: Router, private songService: SongService,
+    private bandService: BandService, private genreService: GenreService,
     private notificationService: NotificationService,private confirmationService: ConfirmationService) {}
 
   ngOnInit() {
@@ -55,6 +59,10 @@ export class SongFormComponent {
               this.song.band = this.bands.find(b => b.id === this.song.band?.id);
             })
           }
+    })
+
+    this.genreService.fetchGenres().subscribe(retrievedGenres => {
+      this.genres = retrievedGenres;
     })
   }
 
