@@ -18,7 +18,8 @@ export class BandService {
       id: band.id,
       name: band.name,
       linkWikiPage: band.linkWikiPage,
-      comments: band.comments
+      comments: band.comments,
+      pinned: band.pinned
     };
     return this.http.patch<string>(`${this.apiUrl}/bands/${band.id}`, bandDto, {responseType: 'text' as 'json'});
   }
@@ -35,7 +36,8 @@ export class BandService {
     const bandDto = {
       name: band.name,
       linkWikiPage: band.linkWikiPage,
-      comments: band.comments
+      comments: band.comments,
+      pinned: band.pinned
     };
     return this.http.post<string>(`${this.apiUrl}/bands`, bandDto, {responseType: 'text' as 'json'});
   }
