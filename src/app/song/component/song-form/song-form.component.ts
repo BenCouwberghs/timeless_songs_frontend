@@ -10,6 +10,8 @@ import { InputGroupModule } from 'primeng/inputgroup';
 import { InputGroupAddonModule } from 'primeng/inputgroupaddon';
 import { SelectModule } from 'primeng/select';
 import { SongPlayerComponent } from '../../../sharedComponents/song-player/song-player.component';
+import { RatingModule } from 'primeng/rating';
+
 
 import { NotificationService } from '@service/notification.service'
 import { SongService } from '@service/song.service';
@@ -20,7 +22,7 @@ import { Song } from '@model/song';
 @Component({
   selector: 'app-song-form',
   imports: [FormsModule, InputTextModule, ButtonModule, FluidModule, ConfirmDialogModule, InputGroupModule,
-    InputGroupAddonModule, SelectModule, SongPlayerComponent],
+    InputGroupAddonModule, SelectModule, SongPlayerComponent, RatingModule],
   providers: [ConfirmationService],
   templateUrl: './song-form.component.html',
 })
