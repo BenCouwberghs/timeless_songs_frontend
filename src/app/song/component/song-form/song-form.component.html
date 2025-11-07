@@ -56,6 +56,12 @@
         <p-rating name="rating" [(ngModel)]="song.rating"></p-rating>
       </div>
 
+      <div>
+        <p-multiselect name="genre" [options]="genres" [(ngModel)]="song.genres" placeholder="Select genres"
+                       optionLabel="description" optionValue="id" display="chip" class="w-full md:w-80">
+        </p-multiselect>
+      </div>
+
       @if (song.youTubeClipCode) {
       <div class="w-full max-w-xl aspect-video">
         <app-song-player
