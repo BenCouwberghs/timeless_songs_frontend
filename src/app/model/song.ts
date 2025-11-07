@@ -7,4 +7,6 @@ export interface Song {
   year: number;
   wikiLinkPage: string;
   youTubeClipCode: string;
+  genres: string;
+  rating: number;
 }
