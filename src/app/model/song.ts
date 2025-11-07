@@ -8,6 +8,6 @@ export interface Song {
   year: number;
   wikiLinkPage: string;
   youTubeClipCode: string;
-  genres: Genre[];
+  genres: number[];
   rating: number;
 }
