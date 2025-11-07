@@ -20,6 +20,7 @@ import { BandService } from '@service/band.service';
 import { GenreService } from '@service/genre.service';
 import { Band } from '@model/band';
 import { Song } from '@model/song';
+import { Genre } from '@model/genre';
 
 @Component({
   selector: 'app-song-form',
@@ -31,13 +32,13 @@ import { Song } from '@model/song';
 
 export class SongFormComponent {
   bands: Band[] = [];
-  genres: any[] = [];
+  genres: Genre[] = [];
   song: Song = {
     name: '',
     year: 0,
     wikiLinkPage: '',
     youTubeClipCode: '',
-    genres: '',
+    genres: [],
     rating: 0
   };
   update = false;
