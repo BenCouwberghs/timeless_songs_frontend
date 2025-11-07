@@ -10,6 +10,7 @@ import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { InputGroupModule } from 'primeng/inputgroup';
 import { InputGroupAddonModule } from 'primeng/inputgroupaddon';
 import { TextareaModule } from 'primeng/textarea';
+import { ToggleSwitchModule } from 'primeng/toggleswitch';
 
 import { NotificationService } from '@service/notification.service'
 import { BandService } from '@service/band.service';
@@ -19,7 +20,7 @@ import { Band } from '@model/band';
   selector: 'app-band-form',
   imports: [
   FormsModule, InputTextModule, FluidModule, ToastModule, ButtonModule, ConfirmDialogModule,
-    InputGroupModule, InputGroupAddonModule, TextareaModule, RouterLink],
+    InputGroupModule, InputGroupAddonModule, TextareaModule, RouterLink, ToggleSwitchModule],
   providers: [ConfirmationService],
   templateUrl: './band-form.component.html',
   styleUrl: './band-form.component.scss'
@@ -29,7 +30,8 @@ export class BandFormComponent {
   band: Band = {
     name:'',
     linkWikiPage: '',
-    comments: ''
+    comments: '',
+    pinned: 0
   }
   update = false;
   id: any;
