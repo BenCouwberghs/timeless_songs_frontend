@@ -28,7 +28,9 @@ export class SongService {
         band: song.band,
         year: song.year,
         wikiLinkPage: song.wikiLinkPage,
-        youTubeClipCode: song.youTubeClipCode
+        youTubeClipCode: song.youTubeClipCode,
+        genres: song.genres,
+        rating: song.rating
       };
     return this.http.post<string>(`${this.apiUrl}/songs`, songDto, {responseType: 'text' as 'json'});
   }
@@ -40,7 +42,9 @@ export class SongService {
       band: song.band,
       year: song.year,
       wikiLinkPage: song.wikiLinkPage,
-      youTubeClipCode: song.youTubeClipCode
+      youTubeClipCode: song.youTubeClipCode,
+      genres: song.genres,
+      rating: song.rating
     };
     return this.http.patch<string>(`${this.apiUrl}/songs/${song.id}`, songDto, {responseType: 'text' as 'json'});
   }
