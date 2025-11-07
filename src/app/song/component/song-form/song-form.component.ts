@@ -52,13 +52,13 @@ export class SongFormComponent {
       this.bands = retrievedBands;
 
       this.id = this.route.snapshot.paramMap.get('id');
-          if(this.id != null) {
-            this.update = true;
-            this.songService.fetchSong(this.id).subscribe(retrievedSong => {
-              this.song = retrievedSong;
-              this.song.band = this.bands.find(b => b.id === this.song.band?.id);
-            })
-          }
+      if(this.id != null) {
+        this.update = true;
+        this.songService.fetchSong(this.id).subscribe(retrievedSong => {
+          this.song = retrievedSong;
+          this.song.band = this.bands.find(b => b.id === this.song.band?.id);
+        })
+      }
     })
 
     this.genreService.fetchGenres().subscribe(retrievedGenres => {
