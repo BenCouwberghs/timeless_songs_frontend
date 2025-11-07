@@ -31,7 +31,7 @@ export class BandFormComponent {
     name:'',
     linkWikiPage: '',
     comments: '',
-    pinned: 0
+    pinned: false
   }
   update = false;
   id: any;
