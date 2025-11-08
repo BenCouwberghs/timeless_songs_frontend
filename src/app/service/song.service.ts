@@ -16,28 +16,23 @@ export class SongService {
 
   fetchSong(id: number): Observable<Song> {
     return this.http.get<Song>(`/api/songs/${id}`).pipe(
-        map(song => {
-          song.genres = song.genres
-            ? (song.genres as unknown as string).split(',').map(genre => Number(genre.trim()))
-            : [];
-          return song;
-        })
-      );
+      map(song => this.mapGenres(song))
+    );
   }
 
   fetchSongs(): Observable<Song[]> {
     return this.http.get<Song[]>(`${this.apiUrl}/songs`).pipe(
-        map(songs =>
-          songs.map(song => ({
-            ...song,
-            genres: song.genres
-              ? (song.genres as unknown as string)
-                  .split(',')
-                  .map(g => Number(g.trim()))
-              : []
-          }))
-        )
-      );
+      map(songs => songs.map(song => this.mapGenres(song)))
+    );
+  }
+
+  mapGenres(song: Song): Song {
+    return {
+      ...song,
+      genres: song.genres
+        ? (song.genres as unknown as string).split(',').map(g => Number(g.trim()))
+        : []
+    };
   }
 
   saveSong(song: Song): Observable<string> {
