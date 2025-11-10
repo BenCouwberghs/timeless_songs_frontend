@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { environment } from '@environments/environment';
-import { Observable } from 'rxjs';
+import { Observable, map } from 'rxjs';
 
 import { Song } from '@model/song';
 
@@ -15,11 +15,24 @@ export class SongService {
   constructor(private http: HttpClient) {}
 
   fetchSong(id: number): Observable<Song> {
-      return this.http.get<Song>(`${this.apiUrl}/songs/${id}`);
+    return this.http.get<Song>(`/api/songs/${id}`).pipe(
+      map(song => this.mapGenres(song))
+    );
   }
 
   fetchSongs(): Observable<Song[]> {
-    return this.http.get<Song[]>(`${this.apiUrl}/songs`);
+    return this.http.get<Song[]>(`${this.apiUrl}/songs`).pipe(
+      map(songs => songs.map(song => this.mapGenres(song)))
+    );
+  }
+
+  mapGenres(song: Song): Song {
+    return {
+      ...song,
+      genres: song.genres
+        ? (song.genres as unknown as string).split(',').map(g => Number(g.trim()))
+        : []
+    };
   }
 
   saveSong(song: Song): Observable<string> {
@@ -28,7 +41,9 @@ export class SongService {
         band: song.band,
         year: song.year,
         wikiLinkPage: song.wikiLinkPage,
-        youTubeClipCode: song.youTubeClipCode
+        youTubeClipCode: song.youTubeClipCode,
+        genres: song.genres.join(','),
+        rating: song.rating
       };
     return this.http.post<string>(`${this.apiUrl}/songs`, songDto, {responseType: 'text' as 'json'});
   }
@@ -40,7 +55,9 @@ export class SongService {
       band: song.band,
       year: song.year,
       wikiLinkPage: song.wikiLinkPage,
-      youTubeClipCode: song.youTubeClipCode
+      youTubeClipCode: song.youTubeClipCode,
+      genres: song.genres.join(','),
+      rating: song.rating
     };
     return this.http.patch<string>(`${this.apiUrl}/songs/${song.id}`, songDto, {responseType: 'text' as 'json'});
   }

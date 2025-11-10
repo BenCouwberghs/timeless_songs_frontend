@@ -1,4 +1,5 @@
 import { Band } from './band';
+import { Genre } from './genre';
 
 export interface Song {
   id?: number;
@@ -7,4 +8,6 @@ export interface Song {
   year: number;
   wikiLinkPage: string;
   youTubeClipCode: string;
+  genres: number[];
+  rating: number;
 }

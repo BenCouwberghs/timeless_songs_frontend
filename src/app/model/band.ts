@@ -6,4 +6,5 @@ export interface Band {
   linkWikiPage: string;
   comments: string;
   songs?: Song[];
+  pinned: boolean;
 }
