@@ -7,10 +7,12 @@ import { BandSortId } from '../model/sorting';
 })
 
 export class SortService {
+  bandPinnedList: Band[] = [];
+  bandList: Band[] = [];
 
   constructor() {}
 
-  sortBand(bands: Band[], bandSortId: BandSortId): Band[] {
+  sortBandList(bands: Band[], bandSortId: BandSortId): Band[] {
     if (!bands || bands.length === 0) return [];
 
     switch (bandSortId) {
@@ -30,5 +32,25 @@ export class SortService {
         return [...bands].sort((a, b) => (b.songs?.length || 0) - (a.songs?.length || 0));
       }
     }
+  }
+
+  sortBand(bands: Band[], bandSortId: BandSortId): Band[] {
+    if (!bands || bands.length === 0) return [];
+
+    // reset the list
+    this.bandPinnedList = [];
+    this.bandList = [];
+
+    for (const band of bands) {
+      if (band.pinned) {
+        this.bandPinnedList.push(band);
+      } else {
+        this.bandList.push(band);
+      }
+    }
+
+    this.bandPinnedList = this.sortBandList(this.bandPinnedList, bandSortId);
+    this.bandList = this.sortBandList(this.bandList, bandSortId);
+    return [...this.bandPinnedList, ...this.bandList];
   }
 }
