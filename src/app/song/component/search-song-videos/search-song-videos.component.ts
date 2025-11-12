@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
+import { SearchVideosService } from '@service/search-videos.service';
 
 @Component({
   selector: 'app-search-song-videos',
@@ -8,4 +9,7 @@ import { Component } from '@angular/core';
 })
 export class SearchSongVideosComponent {
 
+  @Input()
+  bandName!: string;
+  songTitle!: string;
 }
