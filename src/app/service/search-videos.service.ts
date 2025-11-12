@@ -12,5 +12,6 @@ export class SearchVideosService {
   constructor(private http: HttpClient) {}
 
   search(bandName: string, songTitle: string): Observable<any[]> {
-      return.this.http.get<any[]>(`${this.apiUrl}/search-videos`);
+      return this.http.get<any[]>(`${this.apiUrl}/search-videos`);
   }
+}
