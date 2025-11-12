@@ -11,6 +11,7 @@ import { InputGroupModule } from 'primeng/inputgroup';
 import { InputGroupAddonModule } from 'primeng/inputgroupaddon';
 import { TextareaModule } from 'primeng/textarea';
 import { ToggleSwitchModule } from 'primeng/toggleswitch';
+import { TooltipModule } from 'primeng/tooltip';
 
 import { NotificationService } from '@service/notification.service'
 import { BandService } from '@service/band.service';
@@ -20,7 +21,7 @@ import { Band } from '@model/band';
   selector: 'app-band-form',
   imports: [
   FormsModule, InputTextModule, FluidModule, ToastModule, ButtonModule, ConfirmDialogModule,
-    InputGroupModule, InputGroupAddonModule, TextareaModule, RouterLink, ToggleSwitchModule],
+    InputGroupModule, InputGroupAddonModule, TextareaModule, RouterLink, ToggleSwitchModule, TooltipModule],
   providers: [ConfirmationService],
   templateUrl: './band-form.component.html',
   styleUrl: './band-form.component.scss'
