@@ -12,6 +12,7 @@ import { SelectModule } from 'primeng/select';
 import { SongPlayerComponent } from '../../../sharedComponents/song-player/song-player.component';
 import { RatingModule } from 'primeng/rating';
 import { MultiSelectModule } from 'primeng/multiselect';
+import { SearchSongVideosComponent } from '../search-song-videos/search-song-videos.component';
 
 import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
 import { NotificationService } from '@service/notification.service'
@@ -43,6 +44,7 @@ export class SongFormComponent {
   };
   update = false;
   id: any;
+  reference: DynamicDialogRef | undefined;
 
   constructor(private route: ActivatedRoute, private router: Router, private songService: SongService,
     private bandService: BandService, private genreService: GenreService, private dialogService: DialogService,
@@ -143,5 +145,14 @@ export class SongFormComponent {
 
   onCancel() {
     this.gotoSongList();
+  }
+
+  show() {
+    this.reference = this.dialogService.open(SearchSongVideosComponent, {
+      inputValues: {
+        bandName: this.song.band?.name,
+        songTitle: this.song.name
+      }
+    });
   }
 }
