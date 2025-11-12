@@ -13,7 +13,7 @@ import { SongPlayerComponent } from '../../../sharedComponents/song-player/song-
 import { RatingModule } from 'primeng/rating';
 import { MultiSelectModule } from 'primeng/multiselect';
 
-
+import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
 import { NotificationService } from '@service/notification.service'
 import { SongService } from '@service/song.service';
 import { BandService } from '@service/band.service';
@@ -26,7 +26,7 @@ import { Genre } from '@model/genre';
   selector: 'app-song-form',
   imports: [FormsModule, InputTextModule, ButtonModule, FluidModule, ConfirmDialogModule, InputGroupModule,
     InputGroupAddonModule, SelectModule, SongPlayerComponent, RatingModule, MultiSelectModule],
-  providers: [ConfirmationService],
+  providers: [ConfirmationService, DialogService],
   templateUrl: './song-form.component.html',
 })
 
@@ -45,7 +45,7 @@ export class SongFormComponent {
   id: any;
 
   constructor(private route: ActivatedRoute, private router: Router, private songService: SongService,
-    private bandService: BandService, private genreService: GenreService,
+    private bandService: BandService, private genreService: GenreService, private dialogService: DialogService,
     private notificationService: NotificationService,private confirmationService: ConfirmationService) {}
 
   ngOnInit() {
