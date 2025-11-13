@@ -152,6 +152,14 @@ export class SongFormComponent {
       inputValues: {
         bandName: this.song.band?.name,
         songTitle: this.song.name
+      },
+      header: 'Product List',
+      width: '50vw',
+      modal: true,
+      contentStyle: { overflow: 'auto' },
+      breakpoints: {
+        '960px': '75vw',
+        '640px': '90vw'
       }
     });
   }
