@@ -1,1 +1,7 @@
-<p>search-song-videos works!</p>
+<ul class="divide-y divide-gray-200">
+  @for (videoResult of videoResults; track videoResult) {
+  <li class="flex justify-between py-2">
+    <span>{{ videoResult.title }}</span>
+  </li>
+  }
+</ul>
