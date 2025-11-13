@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { SearchVideosService } from '@service/search-videos.service';
 
 @Component({
@@ -9,7 +9,16 @@ import { SearchVideosService } from '@service/search-videos.service';
 })
 export class SearchSongVideosComponent {
 
-  @Input()
-  bandName!: string;
-  songTitle!: string;
+  @Input() bandName!: string;
+  @Input() songTitle!: string;
+
+  videoResults: any[] = [];
+
+  constructor(private searchVideosService: SearchVideosService) {}
+
+  ngOnInit() {
+    this.searchVideosService.search(this.bandName, this.songTitle).subscribe(retrievedResults => {
+      this.videoResults = retrievedResults;
+    })
+  }
 }
