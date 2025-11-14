@@ -1,6 +1,21 @@
+<div class="flex justify-between items-center px-4 py-3 border-b bg-gray-100">
+  <h3 class="font-semibold text-lg">
+    Videos for: {{ bandName }} - {{ songTitle }}
+  </h3>
+
+  <button
+    class="p-button p-button-text"
+    (click)="closeDialog()"
+    type="button"
+  >
+    <i class="pi pi-times text-xl"></i>
+  </button>
+</div>
+
 <ul class="divide-y divide-gray-200">
   @for (videoResult of videoResults; track videoResult) {
-  <li class="flex justify-between py-2">
+  <li class="py-2 px-3 cursor-pointer hover:bg-gray-100 transition"
+      (click)="selectVideo(videoResult)">
     <span>{{ videoResult.title }}</span>
   </li>
   }
