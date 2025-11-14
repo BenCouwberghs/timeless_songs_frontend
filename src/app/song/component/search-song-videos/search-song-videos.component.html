@@ -17,6 +17,7 @@
   <li class="py-2 px-3 cursor-pointer hover:bg-gray-100 transition"
       (click)="selectVideo(videoResult)">
     <span>{{ videoResult.title }}</span>
+    <img [src]="videoResult.thumbnails.urlMedium" alt="thumbnail"/>
   </li>
   }
 </ul>

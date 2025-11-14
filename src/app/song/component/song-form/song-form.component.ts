@@ -155,6 +155,10 @@ export class SongFormComponent {
       },
       width: '50vw',
       modal: true,
+      breakpoints: {
+        '960px': '75vw',
+        '640px': '95vw'
+      }
     });
 
     this.reference.onClose.subscribe((selectedVideo: any) => {
