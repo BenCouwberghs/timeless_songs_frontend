@@ -12,12 +12,27 @@
   </button>
 </div>
 
-<ul class="divide-y divide-gray-200">
-  @for (videoResult of videoResults; track videoResult) {
-  <li class="py-2 px-3 cursor-pointer hover:bg-gray-100 transition"
-      (click)="selectVideo(videoResult)">
-    <span>{{ videoResult.title }}</span>
-    <img [src]="videoResult.thumbnails.urlMedium" alt="thumbnail"/>
-  </li>
+@if (loading) {
+  @for (i of [1, 2, 3, 4]; track i) {
+    <li class="py-2 px-3">
+      <div class="flex-1 pr-3">
+        <p-skeleton width="70%" height="1rem"></p-skeleton>
+        <p-skeleton width="50%" height="1rem" class="mt-2"></p-skeleton>
+      </div>
+      <p-skeleton shape="rectangle" width="120px" height="70px"></p-skeleton>
+    </li>
   }
-</ul>
+}
+
+@else {
+  <ul class="divide-y divide-gray-200">
+    @for (videoResult of videoResults; track videoResult) {
+      <li class="py-2 px-3 cursor-pointer hover:bg-gray-100 transition"
+          (click)="selectVideo(videoResult)">
+        <span>{{ videoResult.title }}</span>
+        <img [src]="videoResult.thumbnails.urlMedium" alt="thumbnail"/>
+      </li>
+    }
+  </ul>
+}
+
