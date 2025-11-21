@@ -4,11 +4,11 @@ import { HttpClientModule, HttpClient } from '@angular/common/http';
 import { ButtonModule } from 'primeng/button';
 import { ToastModule } from 'primeng/toast';
 import { environment } from '../environments/environment';
-import { DividerModule } from 'primeng/divider';
+import { FooterComponent } from './sharedComponents/footer/footer.component';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, HttpClientModule, RouterLink, ButtonModule, ToastModule, DividerModule],
+  imports: [RouterOutlet, HttpClientModule, RouterLink, ButtonModule, ToastModule, FooterComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss'
 })
