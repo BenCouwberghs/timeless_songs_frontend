@@ -51,13 +51,15 @@
           Youtube code
           <i class="pi pi-search" (click)="show()"></i>
         </label>
-        @if (song.youTubeClipCode) {
         <div class="w-full max-w-xl aspect-video">
-          <app-song-player
-            [clipCode]="song.youTubeClipCode"
-          ></app-song-player>
+          @if (song.youTubeClipCode) {
+            <app-song-player
+              [clipCode]="song.youTubeClipCode"
+            ></app-song-player>
+          } @else {
+            <p-skeleton shape="rectangle" width="360px" height="210px"></p-skeleton>
+          }
         </div>
-        }
       </div>
 
       <div>
