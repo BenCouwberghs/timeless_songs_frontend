@@ -13,6 +13,7 @@ import { SongPlayerComponent } from '../../../sharedComponents/song-player/song-
 import { RatingModule } from 'primeng/rating';
 import { MultiSelectModule } from 'primeng/multiselect';
 import { SearchSongVideosComponent } from '../search-song-videos/search-song-videos.component';
+import { SkeletonModule } from 'primeng/skeleton';
 
 import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
 import { NotificationService } from '@service/notification.service'
@@ -26,7 +27,7 @@ import { Genre } from '@model/genre';
 @Component({
   selector: 'app-song-form',
   imports: [FormsModule, InputTextModule, ButtonModule, FluidModule, ConfirmDialogModule, InputGroupModule,
-    InputGroupAddonModule, SelectModule, SongPlayerComponent, RatingModule, MultiSelectModule],
+    InputGroupAddonModule, SelectModule, SongPlayerComponent, RatingModule, MultiSelectModule, SkeletonModule],
   providers: [ConfirmationService, DialogService],
   templateUrl: './song-form.component.html',
 })
