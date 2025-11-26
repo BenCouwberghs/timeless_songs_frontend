@@ -172,4 +172,8 @@ export class SongFormComponent {
       }
     });
   }
+
+  youTubeSearchApplicable() {
+    return (this.song.name !== '' && this.song.band != null);
+  }
 }
