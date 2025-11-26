@@ -149,29 +149,27 @@ export class SongFormComponent {
   }
 
   show() {
-    if (this.song.name != '' && this.song.band != null) {
-      this.reference = this.dialogService.open(SearchSongVideosComponent, {
-        inputValues: {
-          bandName: this.song.band?.name,
-          songTitle: this.song.name
-        },
-        width: '50vw',
-        modal: true,
-        breakpoints: {
-          '960px': '75vw',
-          '640px': '95vw'
-        }
-      });
+    this.reference = this.dialogService.open(SearchSongVideosComponent, {
+      inputValues: {
+        bandName: this.song.band?.name,
+        songTitle: this.song.name
+      },
+      width: '50vw',
+      modal: true,
+      breakpoints: {
+        '960px': '75vw',
+        '640px': '95vw'
+      }
+    });
 
-      this.reference.onClose.subscribe((selectedVideo: any) => {
-        if (selectedVideo) {
-          this.song.youTubeClipCode = selectedVideo.videoId;
-          this.notificationService.sendSuccess(
-            'Video Selected',
-            `Selected: ${selectedVideo.title}`
-          );
-        }
-      });
-    }
+    this.reference.onClose.subscribe((selectedVideo: any) => {
+      if (selectedVideo) {
+        this.song.youTubeClipCode = selectedVideo.videoId;
+        this.notificationService.sendSuccess(
+          'Video Selected',
+          `Selected: ${selectedVideo.title}`
+        );
+      }
+    });
   }
 }
