@@ -13,24 +13,36 @@
 </div>
 
 @if (loading) {
-  @for (i of [1, 2, 3, 4]; track i) {
-    <li class="py-2 px-3">
-      <div class="flex-1 pr-3">
-        <p-skeleton width="70%" height="1rem"></p-skeleton>
-        <p-skeleton width="50%" height="1rem" class="mt-2"></p-skeleton>
+  <ul class="grid grid-cols-1 md:grid-cols-2 gap-4">
+    @for (i of [1, 2, 3, 4]; track i) {
+    <li class="p-4 flex gap-4 items-start">
+      <div class="flex-1 min-w-0 flex flex-col gap-3">
+        <p-skeleton width="20%" height="1rem" class="mt-2"></p-skeleton>
+        <p-skeleton shape="rectangle" width="240px" height="140px"></p-skeleton>
       </div>
-      <p-skeleton shape="rectangle" width="120px" height="70px"></p-skeleton>
     </li>
-  }
+    }
+  </ul>
 }
 
 @else {
-  <ul class="divide-y divide-gray-200">
+  <ul class="grid grid-cols-1 md:grid-cols-2 gap-4">
     @for (videoResult of videoResults; track videoResult) {
-      <li class="py-2 px-3 cursor-pointer hover:bg-gray-100 transition"
-          (click)="selectVideo(videoResult)">
-        <span>{{ videoResult.title }}</span>
-        <img [src]="videoResult.thumbnails.urlMedium" alt="thumbnail"/>
+      <li
+        class="p-4 flex gap-4 items-start cursor-pointer hover:bg-gray-100 transition rounded"
+        (click)="selectVideo(videoResult)"
+      >
+        <div class="flex-1 min-w-0 flex flex-col gap-3">
+          <span class="font-medium block truncate">
+            {{ videoResult.title }}
+          </span>
+
+          <img
+            [src]="videoResult.thumbnails.urlMedium"
+            alt="thumbnail"
+            class="w-[240px] h-[140px] object-cover rounded"
+          />
+        </div>
       </li>
     }
   </ul>
