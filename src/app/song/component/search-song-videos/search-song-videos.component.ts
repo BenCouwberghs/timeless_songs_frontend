@@ -1,11 +1,12 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { SearchVideosService } from '@service/search-videos.service';
+import { DecodeHtmlPipe } from '@service/html-entities.pipe';
 import { DynamicDialogRef } from 'primeng/dynamicdialog';
 import { SkeletonModule } from 'primeng/skeleton';
 
 @Component({
   selector: 'app-search-song-videos',
-  imports: [SkeletonModule],
+  imports: [SkeletonModule, DecodeHtmlPipe],
   templateUrl: './search-song-videos.component.html',
   styleUrl: './search-song-videos.component.scss'
 })
