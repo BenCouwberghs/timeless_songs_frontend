@@ -1,0 +1,10 @@
+@if (band.pinned) {
+<i class="pi pi-thumbtack absolute top-2 right-2 text-gray-500"></i>
+}
+
+<div class="flex flex-col">
+  <span>{{ band.name }}</span>
+  <span class="text-gray-600 text-sm">
+        {{ band.songs?.length }} songs
+</span>
+</div>
