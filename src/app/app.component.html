@@ -1,16 +1,61 @@
-<div
-  class="bg-surface-50 dark:bg-surface-950 min-h-screen p-8 flex flex-col gap-6"
->
-  <nav class="bg-white dark:bg-gray-800 p-4 shadow flex justify-between">
-    <a [routerLink]="'/hero'" class="font-bold text-xl text-gray-600 dark:text-white">
-      Timeless songs
-    </a>
-    <ul class="flex gap-4">
-      <li><a routerLink="/band-list" class="text-blue-500 hover:underline">Bands</a></li>
-      <li><a routerLink="/song-list" class="text-blue-500 hover:underline">Songs</a></li>
-      <li><a routerLink="/credits" class="text-blue-500 hover:underline">Credits</a></li>
-    </ul>
+<div class="flex flex-col min-h-screen">
+  <nav
+    class="bg-white dark:bg-gray-800 p-4 shadow-sm border-b border-gray-200 dark:border-gray-700"
+  >
+    <div class="flex justify-between items-center">
+      <!-- Logo -->
+      <a
+        [routerLink]="'/hero'"
+        class="font-bold text-xl text-gray-700 dark:text-white"
+      >
+        🎸Timeless songs
+      </a>
+
+      <!-- Hamburger button (shown only on mobile) -->
+      <button
+        class="sm:hidden text-gray-600 dark:text-gray-200 focus:outline-none"
+        (click)="isMenuOpen = !isMenuOpen"
+      >
+        @if (!isMenuOpen) {
+        <!-- Hamburger icon -->
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+             stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+          <path stroke-linecap="round" stroke-linejoin="round"
+                d="M3.75 5.75h16.5M3.75 12h16.5m-16.5 6.25h16.5" />
+        </svg>
+        } @else {
+        <!-- X (close) icon -->
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+             stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+          <path stroke-linecap="round" stroke-linejoin="round"
+                d="M6 18L18 6M6 6l12 12" />
+        </svg>
+        }
+      </button>
+
+      <!-- Regular horizontal menu (desktop) -->
+      <ul class="hidden sm:flex gap-6">
+        <li><a routerLink="/band-list" class="text-blue-500 hover:underline">Bands</a></li>
+        <li><a routerLink="/song-list" class="text-blue-500 hover:underline">Songs</a></li>
+        <li><a routerLink="/credits" class="text-blue-500 hover:underline">Credits</a></li>
+      </ul>
+    </div>
+
+    <!-- Mobile dropdown menu -->
+    @if (isMenuOpen) {
+    <div
+      class="sm:hidden mt-4 flex flex-col gap-2 border-t border-gray-100 dark:border-gray-700 pt-4 transition-all duration-300 ease-in-out"
+    >
+      <a routerLink="/band-list" (click)="closeMenu()" class="text-blue-500 hover:underline">Bands</a>
+      <a routerLink="/song-list" (click)="closeMenu()" class="text-blue-500 hover:underline">Songs</a>
+      <a routerLink="/credits" (click)="closeMenu()" class="text-blue-500 hover:underline">Credits</a>
+    </div>
+    }
   </nav>
-  <p-toast></p-toast>
-  <router-outlet></router-outlet>
+
+  <div class="flex-grow min-h-0 bg-surface-50 dark:bg-surface-950 p-1">
+    <p-toast></p-toast>
+    <router-outlet></router-outlet>
+  </div>
+  <app-footer></app-footer>
 </div>

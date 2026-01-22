@@ -3,8 +3,9 @@ name: Build and Push Angular Frontend
 on:
   push:
     branches: [
-      dev_v1,
-      release_v1
+      dev_v2,
+      release_v1,
+      release_v2
     ]
 
 jobs:

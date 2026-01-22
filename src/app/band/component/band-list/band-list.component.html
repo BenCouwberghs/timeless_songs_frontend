@@ -1,40 +1,71 @@
-<div class="w-full max-w-screen-md mx-auto px-4">
+<div class="w-full max-w-screen-md mx-auto">
   <p-toolbar>
     <ng-template #start>
-      <h2 class="text-2xl text-gray-800">Overview Bands</h2>
-    </ng-template>
-    <ng-template #center>
-      <div class="flex space-x-1 pt-2">
-
-        <p-inputgroup>
-          <input pInputText placeholder="Search band" [(ngModel)]="keyword" (input)="onSearch()"/>
-          <p-inputgroup-addon>
-            <i class="pi pi-search"></i>
-          </p-inputgroup-addon>
-        </p-inputgroup>
-
-        @if (keyword) {
-        <p-button icon="pi pi-times" (click)="clear()"></p-button>
-        }
-
-      </div>
+      <h2 class="text-2xl text-gray-800">Bands</h2>
     </ng-template>
     <ng-template #end>
-      <button type="button" icon="pi pi-plus" [rounded]="true" [outlined]="true" pTooltip="Add band" pButton [routerLink]="'/band-form'">
+      <p-popover #sortPopover>
+        <div class="flex flex-col gap-3 p-3">
+          @for (sort of sorts; track sort.id) {
+            <div class="flex gap-3">
+              <p-radioButton
+                name="sortOption"
+                [value]="sort.id"
+                [(ngModel)]="selectedSort"
+                inputId="{{ sort.id }}"
+              ></p-radioButton>
+              <label [for]="sort.id" class="cursor-pointer text-sm mt-1">
+                {{ sort.description }}
+                <span class="text-xl">
+                  @if (sort.type === 'asc') {↓} @else {↑}
+                </span>
+              </label>
+            </div>
+          }
+          <div class="flex justify-end">
+            <button pButton label="Apply" size="small" (click)="applySort(); sortPopover.hide()"></button>
+          </div>
+        </div>
+      </p-popover>
+      @if (searchInputVisible) {
+      <input size="18" pInputText placeholder="Search band" [(ngModel)]="keyword" (input)="onSearch()"/>
+      &nbsp;
+      <button type="button" icon="pi pi-times" [outlined]="true" pButton (click)="hideSearchInput()">
       </button>
+      } @else {
+      <button type="button" icon="pi pi-sort" [outlined]="true" pTooltip="Sort" pButton (click)="sortPopover.toggle($event)">
+      </button>&nbsp;
+      <button type="button" icon="pi pi-plus" [outlined]="true" pTooltip="Add band" pButton [routerLink]="'/band-form'">
+      </button>&nbsp;
+      <button type="button" icon="pi pi-search" [outlined]="true" pButton pTooltip="Search" (click)="showSearchInput()">
+      </button>
+      }
     </ng-template>
   </p-toolbar>
 
-  <ul class="divide-y divide-gray-200">
+  <div
+    class="grid grid-cols-2 gap-4
+       sm:grid-cols-2
+       md:grid-cols-3
+       lg:grid-cols-4
+       xl:grid-cols-5
+       p-4"
+  >
     @for (band of bands; track band) {
-    <li>
-      <a
-        [routerLink]="['/band-form', band.id]"
-        class="flex p-4 hover:bg-gray-100 text-blue-600"
-      >
-        {{ band.name }}
-      </a>
-    </li>
+    <a
+      [routerLink]="['/band-form', band.id]"
+      class="block bg-white dark:bg-gray-800 rounded-xl overflow-hidden
+           shadow-sm hover:shadow-md hover:-translate-y-1
+           transition-all duration-200
+           flex flex-col h-full"
+    >
+      <div class="flex flex-col h-full">
+        <band-overview-info
+          class="flex-1 flex flex-col justify-between p-4 relative"
+          [band]="band"
+        ></band-overview-info>
+      </div>
+    </a>
     }
-  </ul>
+  </div>
 </div>

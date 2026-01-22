@@ -1,0 +1,50 @@
+<div class="flex justify-between items-center px-4 py-3 border-b bg-gray-100">
+  <h3 class="font-semibold text-lg">
+    Videos for: {{ bandName }} - {{ songTitle }}
+  </h3>
+
+  <button
+    class="p-button p-button-text"
+    (click)="closeDialog()"
+    type="button"
+  >
+    <i class="pi pi-times text-xl"></i>
+  </button>
+</div>
+
+@if (loading) {
+  <ul class="grid grid-cols-1 md:grid-cols-2 gap-4">
+    @for (i of [1, 2, 3, 4]; track i) {
+    <li class="p-4 flex gap-4 items-start">
+      <div class="flex-1 min-w-0 flex flex-col gap-3">
+        <p-skeleton width="20%" height="1rem" class="mt-2"></p-skeleton>
+        <p-skeleton shape="rectangle" width="240px" height="140px"></p-skeleton>
+      </div>
+    </li>
+    }
+  </ul>
+}
+
+@else {
+  <ul class="grid grid-cols-1 md:grid-cols-2 gap-4">
+    @for (videoResult of videoResults; track videoResult) {
+      <li
+        class="p-4 flex gap-4 items-start cursor-pointer hover:bg-gray-100 transition rounded"
+        (click)="selectVideo(videoResult)"
+      >
+        <div class="flex-1 min-w-0 flex flex-col gap-3">
+          <span class="font-medium block truncate">
+            {{ videoResult.title | decodeHtml }}
+          </span>
+
+          <img
+            [src]="videoResult.thumbnails.urlMedium"
+            alt="thumbnail"
+            class="w-[240px] h-[140px] object-cover rounded"
+          />
+        </div>
+      </li>
+    }
+  </ul>
+}
+

@@ -1,28 +1,39 @@
 import { Component } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { FormsModule } from "@angular/forms";
-import { BandService } from '../../service/band.service';
 import { InputTextModule } from 'primeng/inputtext';
 import { FluidModule } from 'primeng/fluid';
 import { ToastModule } from 'primeng/toast';
 import { ButtonModule } from 'primeng/button';
-import { NotificationService } from '../../../service/notification.service'
 import { ConfirmationService } from 'primeng/api';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
+import { InputGroupModule } from 'primeng/inputgroup';
+import { InputGroupAddonModule } from 'primeng/inputgroupaddon';
+import { TextareaModule } from 'primeng/textarea';
+import { ToggleSwitchModule } from 'primeng/toggleswitch';
+import { TooltipModule } from 'primeng/tooltip';
+
+import { NotificationService } from '@service/notification.service'
+import { BandService } from '@service/band.service';
+import { Band } from '@model/band';
 
 @Component({
   selector: 'app-band-form',
   imports: [
-  FormsModule, InputTextModule, FluidModule, ToastModule, ButtonModule, ConfirmDialogModule
-    ],
+  FormsModule, InputTextModule, FluidModule, ToastModule, ButtonModule, ConfirmDialogModule,
+    InputGroupModule, InputGroupAddonModule, TextareaModule, RouterLink, ToggleSwitchModule, TooltipModule],
   providers: [ConfirmationService],
   templateUrl: './band-form.component.html',
   styleUrl: './band-form.component.scss'
 })
 export class BandFormComponent {
-  name: string = '';
-  linkWikiPage: string  = '';
-  band: any;
+
+  band: Band = {
+    name:'',
+    linkWikiPage: '',
+    comments: '',
+    pinned: false
+  }
   update = false;
   id: any;
 
@@ -34,24 +45,22 @@ export class BandFormComponent {
 
     if(this.id != null) {
        this.update = true;
-       this.bandService.fetchBand(this.id).subscribe(res => {
-         this.band = res;
-         this.name = this.band.name;
-         this.linkWikiPage = this.band.linkWikiPage;
+       this.bandService.fetchBand(this.id).subscribe(receivedBand => {
+         this.band = receivedBand;
        });
     }
   }
 
   onSave() {
-    if(this.name == '') {
+    if(this.band.name == '') {
       this.notificationService.sendError('Error', 'Band name cannot be empty.');
       return;
     }
 
     if(this.update == false) {
-    this.bandService.saveBand(this.name, this.linkWikiPage).subscribe({
+    this.bandService.saveBand(this.band).subscribe({
       next: () => {
-        this.notificationService.sendSuccess('Success', `Band ${this.name} has been added`);
+        this.notificationService.sendSuccess('Success', `Band ${this.band.name} has been added`);
         this.gotoBandList();
         },
       error: err => {
@@ -60,8 +69,11 @@ export class BandFormComponent {
         }
       });
     } else {
-      this.bandService.modifyBand(this.name, this.linkWikiPage, this.id).subscribe({
-        next: () => this.gotoBandList(),
+      this.bandService.modifyBand(this.band).subscribe({
+        next: () => {
+          this.notificationService.sendSuccess('Success', `Band ${this.band.name} has been successfully modified`);
+          this.gotoBandList();
+          },
         error: err => {
           console.error('Error:', err);
           this.notificationService.sendError('Error', err.message);
